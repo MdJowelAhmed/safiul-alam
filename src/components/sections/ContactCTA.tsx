@@ -1,7 +1,11 @@
+"use client";
+
 import Link from "next/link";
 import { MessageCircleMore } from "lucide-react";
+import { motion } from "framer-motion";
 import { Container } from "@/components/shared/Container";
 import { siteConfig } from "@/data/site";
+import { FadeIn, StaggerContainer, StaggerItem } from "@/components/shared/Motion";
 
 const FacebookIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -31,108 +35,139 @@ export function ContactCTA() {
       aria-labelledby="contact-heading"
       style={{ paddingTop: "var(--section-y)", paddingBottom: "var(--section-y)" }}
     >
-      <style>{`
-        .contact-social-btn {
-          border-color: var(--border);
-          color: var(--text-muted);
-          transition: border-color 150ms, color 150ms;
-        }
-        .contact-social-btn:hover {
-          border-color: var(--accent) !important;
-          color: var(--accent-text) !important;
-        }
-      `}</style>
       <Container>
-        <div
-          className="relative overflow-hidden rounded-2xl border p-10 lg:p-16 text-center"
-          style={{
-            background: "var(--surface)",
-            borderColor: "var(--border)",
-          }}
-        >
-          {/* Background glow */}
+        <FadeIn>
           <div
-            className="pointer-events-none absolute -top-20 left-1/2 -translate-x-1/2 h-60 w-60 rounded-full blur-[100px] opacity-20"
-            aria-hidden="true"
-            style={{ background: "var(--accent)" }}
-          />
+            className="relative overflow-hidden rounded-2xl border p-10 lg:p-16 text-center"
+            style={{
+              background: "var(--surface)",
+              borderColor: "var(--border)",
+            }}
+          >
+            {/* Background glow with soft breathing animation */}
+            <motion.div
+              animate={{
+                scale: [1, 1.2, 1],
+                opacity: [0.15, 0.25, 0.15],
+              }}
+              transition={{
+                duration: 6,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="pointer-events-none absolute -top-20 left-1/2 -translate-x-1/2 h-60 w-60 rounded-full blur-[100px]"
+              aria-hidden="true"
+              style={{ background: "var(--accent)" }}
+            />
 
-          <div className="relative z-10 mx-auto max-w-2xl">
-            <p
-              className="mb-3 text-xs font-semibold uppercase tracking-widest"
-              style={{ color: "var(--accent)" }}
-            >
-              Let&apos;s Talk
-            </p>
-            <h2
-              id="contact-heading"
-              className="text-h2 mb-4"
-              style={{ color: "var(--text)" }}
-            >
-              Ready to improve your customer acquisition?
-            </h2>
-            <p className="mb-8 text-base leading-relaxed" style={{ color: "var(--text-muted)" }}>
-              Let&apos;s look at your current marketing, identify the biggest opportunity, and build a strategy around what actually matters to your business.
-            </p>
-
-            {/* Primary CTA */}
-            <Link
-              href={`https://wa.me/${siteConfig.whatsapp}`}
-              id="contact-cta-whatsapp"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg px-8 py-4 text-sm font-semibold transition-all duration-150 hover:opacity-90 active:scale-[0.98] mb-8"
-              style={{ background: "var(--accent)", color: "var(--bg)" }}
-            >
-              <MessageCircleMore size={18} aria-hidden="true" />
-              Let&apos;s Work Together
-            </Link>
-
-            {/* Divider */}
-            <div className="my-8 flex items-center gap-4">
-              <div className="flex-1 h-px" style={{ background: "var(--border)" }} />
-              <span className="text-xs" style={{ color: "var(--text-dim)" }}>or connect on</span>
-              <div className="flex-1 h-px" style={{ background: "var(--border)" }} />
-            </div>
-
-            {/* Social links */}
-            <div className="flex items-center justify-center gap-4 flex-wrap">
-              <Link
-                href={siteConfig.social.facebook}
-                id="contact-social-facebook"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="contact-social-btn flex items-center gap-2 rounded-lg border px-4 py-2.5 text-xs font-medium"
-                aria-label="Facebook — opens in new tab"
+            <div className="relative z-10 mx-auto max-w-2xl">
+              <p
+                className="mb-3 text-xs font-semibold uppercase tracking-widest"
+                style={{ color: "var(--accent)" }}
               >
-                <FacebookIcon />
-                Facebook
-              </Link>
-              <Link
-                href={siteConfig.social.linkedin}
-                id="contact-social-linkedin"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="contact-social-btn flex items-center gap-2 rounded-lg border px-4 py-2.5 text-xs font-medium"
-                aria-label="LinkedIn — opens in new tab"
+                Let&apos;s Talk
+              </p>
+              <h2
+                id="contact-heading"
+                className="text-h2 mb-4"
+                style={{ color: "var(--text)" }}
               >
-                <LinkedInIcon />
-                LinkedIn
-              </Link>
-              <Link
-                href={siteConfig.social.youtube}
-                id="contact-social-youtube"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="contact-social-btn flex items-center gap-2 rounded-lg border px-4 py-2.5 text-xs font-medium"
-                aria-label="YouTube — opens in new tab"
-              >
-                <YouTubeIcon />
-                YouTube
-              </Link>
+                Ready to improve your customer acquisition?
+              </h2>
+              <p className="mb-8 text-base leading-relaxed" style={{ color: "var(--text-muted)" }}>
+                Let&apos;s look at your current marketing, identify the biggest opportunity, and build a strategy around what actually matters to your business.
+              </p>
+
+              {/* Primary CTA */}
+              <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="inline-block mb-8">
+                <Link
+                  href={`https://wa.me/${siteConfig.whatsapp}`}
+                  id="contact-cta-whatsapp"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-lg px-8 py-4 text-sm font-semibold transition-shadow hover:shadow-lg hover:shadow-green-900/20"
+                  style={{ background: "var(--accent)", color: "var(--bg)" }}
+                >
+                  <MessageCircleMore size={18} aria-hidden="true" />
+                  Let&apos;s Work Together
+                </Link>
+              </motion.div>
+
+              {/* Divider */}
+              <div className="my-8 flex items-center gap-4">
+                <div className="flex-1 h-px" style={{ background: "var(--border)" }} />
+                <span className="text-xs" style={{ color: "var(--text-dim)" }}>or connect on</span>
+                <div className="flex-1 h-px" style={{ background: "var(--border)" }} />
+              </div>
+
+              {/* Social links */}
+              <StaggerContainer staggerChildren={0.08} className="flex items-center justify-center gap-4 flex-wrap">
+                <StaggerItem>
+                  <motion.div whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.97 }}>
+                    <Link
+                      href={siteConfig.social.facebook}
+                      id="contact-social-facebook"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 rounded-lg border px-4 py-2.5 text-xs font-medium transition-colors"
+                      style={{
+                        borderColor: "var(--border)",
+                        color: "var(--text-muted)",
+                        background: "var(--surface-2)",
+                      }}
+                      aria-label="Facebook — opens in new tab"
+                    >
+                      <FacebookIcon />
+                      Facebook
+                    </Link>
+                  </motion.div>
+                </StaggerItem>
+
+                <StaggerItem>
+                  <motion.div whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.97 }}>
+                    <Link
+                      href={siteConfig.social.linkedin}
+                      id="contact-social-linkedin"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 rounded-lg border px-4 py-2.5 text-xs font-medium transition-colors"
+                      style={{
+                        borderColor: "var(--border)",
+                        color: "var(--text-muted)",
+                        background: "var(--surface-2)",
+                      }}
+                      aria-label="LinkedIn — opens in new tab"
+                    >
+                      <LinkedInIcon />
+                      LinkedIn
+                    </Link>
+                  </motion.div>
+                </StaggerItem>
+
+                <StaggerItem>
+                  <motion.div whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.97 }}>
+                    <Link
+                      href={siteConfig.social.youtube}
+                      id="contact-social-youtube"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 rounded-lg border px-4 py-2.5 text-xs font-medium transition-colors"
+                      style={{
+                        borderColor: "var(--border)",
+                        color: "var(--text-muted)",
+                        background: "var(--surface-2)",
+                      }}
+                      aria-label="YouTube — opens in new tab"
+                    >
+                      <YouTubeIcon />
+                      YouTube
+                    </Link>
+                  </motion.div>
+                </StaggerItem>
+              </StaggerContainer>
             </div>
           </div>
-        </div>
+        </FadeIn>
       </Container>
     </section>
   );

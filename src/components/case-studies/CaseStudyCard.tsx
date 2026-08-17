@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { motion } from "framer-motion";
 import { type CaseStudy } from "@/types";
 import { cn } from "@/lib/utils";
 
@@ -25,9 +28,10 @@ export function CaseStudyCard({ study, className }: CaseStudyCardProps) {
   const otherMetrics = study.metrics.filter((m) => !m.highlight);
 
   return (
-    <article
+    <motion.article
+      whileHover={{ y: -6, transition: { duration: 0.2, ease: "easeOut" } }}
       className={cn(
-        "group relative flex flex-col rounded-xl border transition-all duration-200 overflow-hidden",
+        "group relative flex flex-col rounded-xl border transition-all duration-200 overflow-hidden h-full",
         className
       )}
       style={{
@@ -74,10 +78,10 @@ export function CaseStudyCard({ study, className }: CaseStudyCardProps) {
 
         <Link
           href={`/case-studies/${study.slug}`}
-          className="shrink-0 flex h-7 w-7 items-center justify-center rounded-lg border opacity-0 group-hover:opacity-100 transition-all"
+          className="shrink-0 flex h-7 w-7 items-center justify-center rounded-lg border opacity-0 group-hover:opacity-100 transition-all duration-200 group-hover:scale-110"
           style={{
             borderColor: "var(--border)",
-            color: "var(--text-muted)",
+            color: "var(--accent)",
           }}
           aria-label={`View ${study.niche} case study`}
         >
@@ -138,6 +142,6 @@ export function CaseStudyCard({ study, className }: CaseStudyCardProps) {
           </p>
         </div>
       )}
-    </article>
+    </motion.article>
   );
 }

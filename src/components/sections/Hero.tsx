@@ -5,19 +5,7 @@ import Link from "next/link";
 import { ArrowRight, MessageCircleMore } from "lucide-react";
 import { Container } from "@/components/shared/Container";
 import { siteConfig } from "@/data/site";
-
-function FadeUp({ children, delay = 0, className }: { children: React.ReactNode; delay?: number; className?: string }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay, ease: "easeOut" }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
+import { FadeIn, StaggerContainer, StaggerItem } from "@/components/shared/Motion";
 
 const platforms = ["Meta Ads", "Google Ads", "TikTok Ads", "LinkedIn Ads"];
 
@@ -39,9 +27,18 @@ export function Hero() {
         }}
       />
 
-      {/* Accent glow */}
-      <div
-        className="pointer-events-none absolute top-1/3 right-1/4 h-96 w-96 rounded-full blur-[120px] opacity-20"
+      {/* Accent glow with slow breathing animation */}
+      <motion.div
+        animate={{
+          scale: [1, 1.15, 1],
+          opacity: [0.18, 0.28, 0.18],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="pointer-events-none absolute top-1/3 right-1/4 h-96 w-96 rounded-full blur-[120px]"
         aria-hidden="true"
         style={{ background: "var(--accent)" }}
       />
@@ -49,9 +46,9 @@ export function Hero() {
       <Container className="relative z-10">
         <div className="max-w-4xl">
           {/* Eyebrow */}
-          <FadeUp delay={0}>
+          <FadeIn delay={0.05}>
             <div
-              className="mb-6 inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-medium"
+              className="mb-6 inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-medium backdrop-blur-sm"
               style={{
                 borderColor: "var(--border)",
                 background: "var(--surface)",
@@ -65,20 +62,20 @@ export function Hero() {
               />
               Welcome to My Portfolio
             </div>
-          </FadeUp>
+          </FadeIn>
 
           {/* Name */}
-          <FadeUp delay={0.1}>
+          <FadeIn delay={0.15}>
             <p
               className="mb-2 text-sm font-semibold uppercase tracking-[0.2em]"
               style={{ color: "var(--accent)" }}
             >
               Hi, I&apos;m Mohammad Safiul Alam
             </p>
-          </FadeUp>
+          </FadeIn>
 
           {/* Title */}
-          <FadeUp delay={0.2}>
+          <FadeIn delay={0.25}>
             <h1
               className="text-display mb-6"
               style={{ color: "var(--text)" }}
@@ -88,35 +85,35 @@ export function Hero() {
               <br />
               Strategist
             </h1>
-          </FadeUp>
+          </FadeIn>
 
           {/* Tagline */}
-          <FadeUp delay={0.3}>
+          <FadeIn delay={0.35}>
             <p
-              className="mb-4 text-xl font-medium max-w-2xl"
+              className="mb-4 text-xl font-medium max-w-2xl leading-relaxed"
               style={{ color: "var(--text)" }}
             >
               I Help Businesses Acquire Customers and Grow Through Performance Marketing
             </p>
-          </FadeUp>
+          </FadeIn>
 
           {/* Supporting copy */}
-          <FadeUp delay={0.4}>
+          <FadeIn delay={0.45}>
             <p
               className="mb-8 max-w-xl text-base leading-relaxed"
               style={{ color: "var(--text-muted)" }}
             >
               {siteConfig.description} I combine strategy, data, and continuous optimisation to create measurable marketing programs focused on better acquisition, stronger performance, and sustainable business growth.
             </p>
-          </FadeUp>
+          </FadeIn>
 
           {/* Platform badges */}
-          <FadeUp delay={0.45}>
-            <div className="mb-10 flex flex-wrap gap-2">
-              {platforms.map((p) => (
-                <span
-                  key={p}
-                  className="rounded-full border px-3 py-1 text-xs font-medium"
+          <StaggerContainer delayChildren={0.55} staggerChildren={0.07} className="mb-10 flex flex-wrap gap-2">
+            {platforms.map((p) => (
+              <StaggerItem key={p}>
+                <motion.span
+                  whileHover={{ scale: 1.05, borderColor: "var(--accent)" }}
+                  className="inline-block rounded-full border px-3.5 py-1 text-xs font-medium transition-colors cursor-default"
                   style={{
                     borderColor: "var(--border)",
                     background: "var(--surface)",
@@ -124,81 +121,88 @@ export function Hero() {
                   }}
                 >
                   {p}
-                </span>
-              ))}
-            </div>
-          </FadeUp>
+                </motion.span>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
 
           {/* CTAs */}
-          <FadeUp delay={0.5}>
+          <FadeIn delay={0.65}>
             <div className="flex flex-wrap items-center gap-4">
-              <Link
-                href="#case-studies"
-                id="hero-cta-primary"
-                className="inline-flex items-center gap-2 rounded-lg px-6 py-3.5 text-sm font-semibold transition-all duration-150 hover:opacity-90 active:scale-[0.98]"
-                style={{ background: "var(--accent)", color: "var(--bg)" }}
-              >
-                View My Work
-                <ArrowRight size={16} aria-hidden="true" />
-              </Link>
-              <Link
-                href="#contact"
-                id="hero-cta-secondary"
-                className="inline-flex items-center gap-2 rounded-lg border px-6 py-3.5 text-sm font-semibold transition-all duration-150 active:scale-[0.98]"
-                style={{
-                  borderColor: "var(--border)",
-                  color: "var(--text)",
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--accent)";
-                  (e.currentTarget as HTMLAnchorElement).style.color = "var(--accent-text)";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--border)";
-                  (e.currentTarget as HTMLAnchorElement).style.color = "var(--text)";
-                }}
-              >
-                <MessageCircleMore size={16} aria-hidden="true" />
-                Let&apos;s Work Together
-              </Link>
+              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                <Link
+                  href="#case-studies"
+                  id="hero-cta-primary"
+                  className="inline-flex items-center gap-2 rounded-lg px-6 py-3.5 text-sm font-semibold shadow-lg transition-all hover:shadow-green-900/20"
+                  style={{ background: "var(--accent)", color: "var(--bg)" }}
+                >
+                  View My Work
+                  <ArrowRight size={16} aria-hidden="true" />
+                </Link>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                <Link
+                  href="#contact"
+                  id="hero-cta-secondary"
+                  className="inline-flex items-center gap-2 rounded-lg border px-6 py-3.5 text-sm font-semibold transition-colors"
+                  style={{
+                    borderColor: "var(--border)",
+                    color: "var(--text)",
+                    background: "var(--surface)",
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--accent)";
+                    (e.currentTarget as HTMLAnchorElement).style.color = "var(--accent-text)";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--border)";
+                    (e.currentTarget as HTMLAnchorElement).style.color = "var(--text)";
+                  }}
+                >
+                  <MessageCircleMore size={16} aria-hidden="true" />
+                  Let&apos;s Work Together
+                </Link>
+              </motion.div>
             </div>
-          </FadeUp>
+          </FadeIn>
 
           {/* Credential metrics */}
-          <FadeUp delay={0.6}>
-            <div className="mt-14 flex flex-wrap gap-6 sm:gap-10">
-              {siteConfig.metrics.map(({ label, value, suffix }) => (
-                <div key={label} className="space-y-0.5">
-                  <p
-                    className="text-2xl font-bold tracking-tight tabular-nums"
-                    style={{ color: "var(--text)" }}
-                  >
-                    {value}{suffix}
-                  </p>
-                  <p className="text-xs" style={{ color: "var(--text-muted)" }}>
-                    {label}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </FadeUp>
+          <StaggerContainer delayChildren={0.75} staggerChildren={0.1} className="mt-14 flex flex-wrap gap-6 sm:gap-10">
+            {siteConfig.metrics.map(({ label, value, suffix }) => (
+              <StaggerItem key={label} className="space-y-0.5">
+                <p
+                  className="text-2xl font-bold tracking-tight tabular-nums"
+                  style={{ color: "var(--text)" }}
+                >
+                  {value}{suffix}
+                </p>
+                <p className="text-xs" style={{ color: "var(--text-muted)" }}>
+                  {label}
+                </p>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
         </div>
       </Container>
 
-      {/* Scroll hint */}
+      {/* Scroll hint with bounce motion */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.2, duration: 0.6 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 cursor-pointer"
         aria-hidden="true"
+        onClick={() => {
+          document.getElementById("trust")?.scrollIntoView({ behavior: "smooth" });
+        }}
       >
-        <span className="text-xs" style={{ color: "var(--text-dim)" }}>Scroll</span>
-        <div
+        <span className="text-xs font-medium uppercase tracking-wider" style={{ color: "var(--text-dim)" }}>Scroll</span>
+        <motion.div
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
           className="h-8 w-px"
           style={{
-            background:
-              "linear-gradient(to bottom, var(--text-dim), transparent)",
+            background: "linear-gradient(to bottom, var(--accent), transparent)",
           }}
         />
       </motion.div>

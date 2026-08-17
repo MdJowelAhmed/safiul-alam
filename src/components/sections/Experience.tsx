@@ -1,6 +1,9 @@
+"use client";
+
 import { Container } from "@/components/shared/Container";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { workExperience } from "@/data/experience";
+import { FadeIn, StaggerContainer, StaggerItem, HoverCard } from "@/components/shared/Motion";
 
 export function Experience() {
   return (
@@ -10,12 +13,14 @@ export function Experience() {
       style={{ paddingTop: "var(--section-y)", paddingBottom: "var(--section-y)" }}
     >
       <Container>
-        <SectionHeading
-          eyebrow="Experience"
-          title="Professional Experience"
-          description="A track record of applying performance marketing expertise across agencies, freelance projects, and media organisations."
-          className="mb-12"
-        />
+        <FadeIn>
+          <SectionHeading
+            eyebrow="Experience"
+            title="Professional Experience"
+            description="A track record of applying performance marketing expertise across agencies, freelance projects, and media organisations."
+            className="mb-12"
+          />
+        </FadeIn>
 
         <div className="relative">
           {/* Vertical line — desktop only */}
@@ -25,12 +30,12 @@ export function Experience() {
             aria-hidden="true"
           />
 
-          <ol className="space-y-8" aria-label="Work experience timeline">
-            {workExperience.map((job, index) => (
-              <li key={job.id} className="relative flex gap-6">
+          <StaggerContainer staggerChildren={0.12} className="space-y-8" role="list" aria-label="Work experience timeline">
+            {workExperience.map((job) => (
+              <StaggerItem key={job.id} className="relative flex gap-6" role="listitem">
                 {/* Timeline dot */}
                 <div
-                  className="hidden md:flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 z-10"
+                  className="hidden md:flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 z-10 transition-colors"
                   style={{
                     background: "var(--bg)",
                     borderColor: job.current ? "var(--accent)" : "var(--border)",
@@ -46,49 +51,51 @@ export function Experience() {
                 </div>
 
                 {/* Content */}
-                <div
-                  className="flex-1 rounded-xl border p-6 transition-colors duration-150"
-                  style={{
-                    background: "var(--surface)",
-                    borderColor: job.current ? "var(--accent)" : "var(--border)",
-                  }}
-                >
-                  <div className="flex flex-wrap items-start justify-between gap-3 mb-3">
-                    <div>
-                      <h3 className="text-base font-semibold" style={{ color: "var(--text)" }}>
-                        {job.title}
-                      </h3>
-                      <p className="text-sm font-medium" style={{ color: "var(--accent)" }}>
-                        {job.company}
-                      </p>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      {job.current && (
+                <div className="flex-1">
+                  <HoverCard
+                    className="rounded-xl border p-6 transition-colors duration-150"
+                    style={{
+                      background: "var(--surface)",
+                      borderColor: job.current ? "var(--accent)" : "var(--border)",
+                    }}
+                  >
+                    <div className="flex flex-wrap items-start justify-between gap-3 mb-3">
+                      <div>
+                        <h3 className="text-base font-semibold" style={{ color: "var(--text)" }}>
+                          {job.title}
+                        </h3>
+                        <p className="text-sm font-medium" style={{ color: "var(--accent)" }}>
+                          {job.company}
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        {job.current && (
+                          <span
+                            className="rounded-full px-2.5 py-0.5 text-xs font-semibold"
+                            style={{
+                              background: "var(--accent-glow)",
+                              color: "var(--accent)",
+                            }}
+                          >
+                            Current
+                          </span>
+                        )}
                         <span
-                          className="rounded-full px-2.5 py-0.5 text-xs font-semibold"
-                          style={{
-                            background: "var(--accent-glow)",
-                            color: "var(--accent)",
-                          }}
+                          className="text-xs"
+                          style={{ color: "var(--text-muted)" }}
                         >
-                          Current
+                          {job.period}
                         </span>
-                      )}
-                      <span
-                        className="text-xs"
-                        style={{ color: "var(--text-muted)" }}
-                      >
-                        {job.period}
-                      </span>
+                      </div>
                     </div>
-                  </div>
-                  <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
-                    {job.description}
-                  </p>
+                    <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
+                      {job.description}
+                    </p>
+                  </HoverCard>
                 </div>
-              </li>
+              </StaggerItem>
             ))}
-          </ol>
+          </StaggerContainer>
         </div>
       </Container>
     </section>

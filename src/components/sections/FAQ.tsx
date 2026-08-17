@@ -2,10 +2,11 @@
 
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Container } from "@/components/shared/Container";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { faqItems } from "@/data/faq";
-import { cn } from "@/lib/utils";
+import { FadeIn, StaggerContainer, StaggerItem } from "@/components/shared/Motion";
 
 export function FAQ() {
   const [openId, setOpenId] = useState<string | null>(null);
@@ -28,70 +29,79 @@ export function FAQ() {
     >
       <Container>
         <div className="mx-auto max-w-2xl">
-          <SectionHeading
-            eyebrow="FAQ"
-            title="Common Questions"
-            description="Honest answers to the questions most clients ask before getting started."
-            align="center"
-            className="mb-10"
-          />
+          <FadeIn>
+            <SectionHeading
+              eyebrow="FAQ"
+              title="Common Questions"
+              description="Honest answers to the questions most clients ask before getting started."
+              align="center"
+              className="mb-10"
+            />
+          </FadeIn>
 
-          <div className="space-y-2" role="list" aria-label="Frequently asked questions">
+          <StaggerContainer staggerChildren={0.06} className="space-y-2" role="list" aria-label="Frequently asked questions">
             {faqItems.map((item) => {
               const isOpen = openId === item.id;
               return (
-                <div
-                  key={item.id}
-                  role="listitem"
-                  className="rounded-xl border overflow-hidden transition-colors duration-150"
-                  style={{
-                    background: "var(--surface-2)",
-                    borderColor: isOpen ? "var(--accent)" : "var(--border)",
-                  }}
-                >
-                  <button
-                    id={`faq-btn-${item.id}`}
-                    type="button"
-                    className="flex w-full items-start justify-between gap-4 px-5 py-4 text-left"
-                    onClick={() => toggle(item.id)}
-                    aria-expanded={isOpen}
-                    aria-controls={`faq-panel-${item.id}`}
-                  >
-                    <span
-                      className="text-sm font-semibold"
-                      style={{ color: "var(--text)" }}
-                    >
-                      {item.question}
-                    </span>
-                    <ChevronDown
-                      size={16}
-                      aria-hidden="true"
-                      className="shrink-0 mt-0.5 transition-transform duration-200"
-                      style={{
-                        color: isOpen ? "var(--accent)" : "var(--text-muted)",
-                        transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
-                      }}
-                    />
-                  </button>
-
+                <StaggerItem key={item.id} role="listitem">
                   <div
-                    id={`faq-panel-${item.id}`}
-                    role="region"
-                    aria-labelledby={`faq-btn-${item.id}`}
-                    hidden={!isOpen}
-                    className="overflow-hidden"
+                    className="rounded-xl border overflow-hidden transition-colors duration-200"
+                    style={{
+                      background: "var(--surface-2)",
+                      borderColor: isOpen ? "var(--accent)" : "var(--border)",
+                    }}
                   >
-                    <p
-                      className="px-5 pb-5 text-sm leading-relaxed"
-                      style={{ color: "var(--text-muted)" }}
+                    <button
+                      id={`faq-btn-${item.id}`}
+                      type="button"
+                      className="flex w-full items-start justify-between gap-4 px-5 py-4 text-left cursor-pointer"
+                      onClick={() => toggle(item.id)}
+                      aria-expanded={isOpen}
+                      aria-controls={`faq-panel-${item.id}`}
                     >
-                      {item.answer}
-                    </p>
+                      <span
+                        className="text-sm font-semibold transition-colors"
+                        style={{ color: isOpen ? "var(--accent-text)" : "var(--text)" }}
+                      >
+                        {item.question}
+                      </span>
+                      <ChevronDown
+                        size={16}
+                        aria-hidden="true"
+                        className="shrink-0 mt-0.5 transition-transform duration-300"
+                        style={{
+                          color: isOpen ? "var(--accent)" : "var(--text-muted)",
+                          transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
+                        }}
+                      />
+                    </button>
+
+                    <AnimatePresence initial={false}>
+                      {isOpen && (
+                        <motion.div
+                          id={`faq-panel-${item.id}`}
+                          role="region"
+                          aria-labelledby={`faq-btn-${item.id}`}
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3, ease: [0.21, 0.47, 0.32, 0.98] }}
+                          className="overflow-hidden"
+                        >
+                          <p
+                            className="px-5 pb-5 text-sm leading-relaxed"
+                            style={{ color: "var(--text-muted)" }}
+                          >
+                            {item.answer}
+                          </p>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
-                </div>
+                </StaggerItem>
               );
             })}
-          </div>
+          </StaggerContainer>
         </div>
       </Container>
     </section>
