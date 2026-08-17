@@ -1,0 +1,338 @@
+import type { CaseStudy } from "@/types";
+
+export const caseStudies: CaseStudy[] = [
+  // ─── META ADS ───────────────────────────────────────────────
+  {
+    slug: "bicycle-cycling-ecommerce-au",
+    platform: "meta",
+    category: ["ecommerce"],
+    niche: "Bicycle & Cycling",
+    market: "Australia & New Zealand",
+    objective: "Sales / ROAS",
+    metrics: [
+      { label: "ROAS", value: "42.98x", highlight: true },
+      { label: "Purchases", value: "148" },
+      { label: "Purchase Value", value: "$293K+", highlight: true },
+      { label: "Ad Spend", value: "$6.8K" },
+      { label: "Reach", value: "93K+" },
+    ],
+    summary:
+      "Scaled a cycling eCommerce brand in Australia and New Zealand to an extraordinary 42.98x ROAS through precision audience targeting, creative testing, and campaign structure optimisation.",
+    tags: ["Meta Ads", "eCommerce", "ROAS", "Australia"],
+  },
+  {
+    slug: "home-appliances-electronics-uk",
+    platform: "meta",
+    category: ["ecommerce"],
+    niche: "Home Appliances & Consumer Electronics",
+    market: "United Kingdom",
+    objective: "Sales / ROAS",
+    metrics: [
+      { label: "ROAS", value: "7.05x", highlight: true },
+      { label: "Purchases", value: "313" },
+      { label: "Purchase Value", value: "$49,859", highlight: true },
+      { label: "Reach", value: "209K+" },
+    ],
+    summary:
+      "Drove strong sales results for a UK home appliances brand, achieving 313 purchases and 7.05x ROAS with extensive reach across the target market.",
+    tags: ["Meta Ads", "eCommerce", "UK", "Electronics"],
+  },
+  {
+    slug: "home-decorative-lighting-nl",
+    platform: "meta",
+    category: ["ecommerce"],
+    niche: "Home & Decorative Lighting",
+    market: "Netherlands",
+    objective: "Sales / ROAS",
+    metrics: [
+      { label: "ROAS", value: "5.00x", highlight: true },
+      { label: "Purchases", value: "1,113" },
+      { label: "Estimated Revenue", value: "€122K+", highlight: true },
+      { label: "Ad Spend", value: "€24.4K" },
+      { label: "CPA", value: "€21.95" },
+    ],
+    summary:
+      "Scaled a Dutch lighting brand to over 1,100 purchases and €122K+ revenue with consistent 5x ROAS and a low €21.95 cost per acquisition.",
+    tags: ["Meta Ads", "eCommerce", "Netherlands", "Lighting"],
+  },
+  {
+    slug: "beauty-cosmetics-uae",
+    platform: "meta",
+    category: ["ecommerce"],
+    niche: "Beauty & Cosmetics",
+    market: "UAE",
+    objective: "Sales / ROAS",
+    metrics: [
+      { label: "ROAS", value: "2.36x", highlight: true },
+      { label: "Purchases", value: "105" },
+      { label: "Purchase Value", value: "18,192 AED", highlight: true },
+      { label: "Ad Spend", value: "7,724 AED" },
+      { label: "Reach", value: "99,517" },
+    ],
+    summary:
+      "Generated consistent purchase results for a UAE beauty brand, reaching 99K+ potential customers and maintaining profitable ROAS in a competitive market.",
+    tags: ["Meta Ads", "eCommerce", "UAE", "Beauty"],
+  },
+  {
+    slug: "industrial-adhesives-uk",
+    platform: "meta",
+    category: ["ecommerce"],
+    niche: "Industrial Adhesives / Epoxy",
+    market: "United Kingdom",
+    objective: "Sales",
+    metrics: [
+      { label: "ROAS", value: "11.89x", highlight: true },
+      { label: "Purchases", value: "286" },
+      { label: "Purchase Value", value: "£20,368", highlight: true },
+      { label: "Ad Spend", value: "£1,712" },
+      { label: "CPA", value: "£5.99" },
+    ],
+    summary:
+      "Achieved 11.89x ROAS for a UK industrial adhesives brand with an ultra-low £5.99 CPA across 286 purchases, demonstrating strong performance in a niche B2B-adjacent market.",
+    tags: ["Meta Ads", "eCommerce", "UK", "Industrial"],
+  },
+  {
+    slug: "furniture-usa",
+    platform: "meta",
+    category: ["ecommerce"],
+    niche: "Furniture",
+    market: "USA",
+    objective: "Sales",
+    metrics: [
+      { label: "ROAS", value: "10.81x", highlight: true },
+      { label: "Purchases", value: "309" },
+      { label: "Purchase Value", value: "$57,742", highlight: true },
+      { label: "Ad Spend", value: "$5,340" },
+      { label: "CPA", value: "$17.28" },
+    ],
+    summary:
+      "Delivered 10.81x ROAS for a US furniture brand, generating $57K+ in purchase value from 309 transactions at just $17.28 cost per acquisition.",
+    tags: ["Meta Ads", "eCommerce", "USA", "Furniture"],
+  },
+  {
+    slug: "luxury-lighting-nl",
+    platform: "meta",
+    category: ["ecommerce"],
+    niche: "Luxury Lighting",
+    market: "Netherlands",
+    objective: "Sales / Scale",
+    metrics: [
+      { label: "ROAS", value: "6.48x", highlight: true },
+      { label: "Purchases", value: "2,009" },
+      { label: "Purchase Value", value: "€260,278", highlight: true },
+      { label: "Ad Spend", value: "€40,194" },
+      { label: "CPA", value: "€20.01" },
+      { label: "Reach", value: "1.07M+" },
+      { label: "Impressions", value: "5.29M+" },
+    ],
+    summary:
+      "Scaled a luxury lighting brand in the Netherlands to over 2,000 purchases and €260K+ revenue. Achieved 1.07M reach and 5.29M+ impressions while maintaining a 6.48x ROAS.",
+    tags: ["Meta Ads", "eCommerce", "Netherlands", "Luxury", "Scale"],
+  },
+  {
+    slug: "payroll-education-canada",
+    platform: "meta",
+    category: ["lead-gen"],
+    niche: "Payroll & HR Education",
+    market: "Canada",
+    objective: "Lead Generation",
+    metrics: [
+      { label: "Platform", value: "Meta Ads" },
+      { label: "Objective", value: "Lead Generation" },
+      { label: "Market", value: "Canada" },
+    ],
+    summary:
+      "Generated qualified leads for a Canadian payroll education provider, targeting HR professionals and small business owners seeking compliance training.",
+    tags: ["Meta Ads", "Lead Gen", "Canada", "Education"],
+  },
+  {
+    slug: "salon-beauty-consulting-usa",
+    platform: "meta",
+    category: ["lead-gen"],
+    niche: "Salon & Beauty Consulting",
+    market: "USA",
+    objective: "Lead Generation",
+    metrics: [
+      { label: "Platform", value: "Meta Ads" },
+      { label: "Objective", value: "Lead Generation" },
+      { label: "Market", value: "USA" },
+    ],
+    summary:
+      "Drove inbound consultation requests for a US-based salon business consultant, targeting salon owners and beauty entrepreneurs.",
+    tags: ["Meta Ads", "Lead Gen", "USA", "Beauty"],
+  },
+  {
+    slug: "custom-sportswear-uk",
+    platform: "meta",
+    category: ["ecommerce"],
+    niche: "Custom Sportswear",
+    market: "United Kingdom",
+    objective: "Sales",
+    metrics: [
+      { label: "Platform", value: "Meta Ads" },
+      { label: "Objective", value: "eCommerce Sales" },
+      { label: "Market", value: "UK" },
+    ],
+    summary:
+      "Ran performance campaigns for a UK custom sportswear brand, focusing on team kits, gym wear and activewear with audience-specific creatives.",
+    tags: ["Meta Ads", "eCommerce", "UK", "Fashion"],
+  },
+
+  // ─── TIKTOK ADS ─────────────────────────────────────────────
+  {
+    slug: "health-wellness-ecommerce-uae",
+    platform: "tiktok",
+    category: ["ecommerce"],
+    niche: "Health & Wellness",
+    market: "UAE",
+    objective: "Sales / ROAS",
+    metrics: [
+      { label: "ROAS", value: "6.39x", highlight: true },
+      { label: "Purchases", value: "134" },
+      { label: "Sales Value", value: "100,955 AED", highlight: true },
+      { label: "Impressions", value: "4.13M+" },
+      { label: "Clicks", value: "206,755" },
+    ],
+    summary:
+      "Achieved 6.39x ROAS for a UAE health and wellness brand on TikTok Ads, with 4.13M+ impressions and over 206K link clicks to site.",
+    tags: ["TikTok Ads", "eCommerce", "UAE", "Health"],
+  },
+  {
+    slug: "fashion-apparel-uk-tiktok",
+    platform: "tiktok",
+    category: ["ecommerce"],
+    niche: "Fashion & Apparel",
+    market: "United Kingdom",
+    objective: "Sales / ROI",
+    metrics: [
+      { label: "ROI", value: "13.10x", highlight: true },
+      { label: "Orders", value: "4,472" },
+      { label: "Revenue", value: "£78,402", highlight: true },
+      { label: "Ad Spend", value: "£5,983" },
+    ],
+    summary:
+      "Scaled a UK fashion brand to 4,472 orders and £78K+ revenue on TikTok Ads with a 13.10x ROI — one of the highest-performing TikTok campaigns in the portfolio.",
+    tags: ["TikTok Ads", "eCommerce", "UK", "Fashion"],
+  },
+  {
+    slug: "fashion-clothing-usa-tiktok",
+    platform: "tiktok",
+    category: ["ecommerce"],
+    niche: "Fashion & Clothing",
+    market: "USA",
+    objective: "Sales / ROAS",
+    metrics: [
+      { label: "ROAS", value: "7.49x", highlight: true },
+      { label: "Purchases", value: "123" },
+      { label: "Sales Value", value: "$17,215", highlight: true },
+      { label: "Ad Spend", value: "$2,299" },
+    ],
+    summary:
+      "Generated $17K+ in sales for a US clothing brand via TikTok Ads with a 7.49x ROAS, demonstrating strong creative performance and audience alignment.",
+    tags: ["TikTok Ads", "eCommerce", "USA", "Fashion"],
+  },
+
+  // ─── GOOGLE ADS ──────────────────────────────────────────────
+  {
+    slug: "ecommerce-google-usa",
+    platform: "google",
+    category: ["ecommerce"],
+    niche: "eCommerce",
+    market: "USA",
+    objective: "Sales / ROAS",
+    metrics: [
+      { label: "ROAS", value: "18.04x", highlight: true },
+      { label: "Conversion Value", value: "$6,670", highlight: true },
+      { label: "Ad Spend", value: "$370" },
+      { label: "Cost / Conversion", value: "$3.97" },
+    ],
+    summary:
+      "Achieved 18.04x ROAS for a US eCommerce brand on Google Ads with just $370 in spend — an exceptional return driven by precise keyword strategy and shopping campaign structure.",
+    tags: ["Google Ads", "eCommerce", "USA"],
+  },
+  {
+    slug: "clothing-apparel-google-uk-1",
+    platform: "google",
+    category: ["ecommerce"],
+    niche: "Clothing & Apparel",
+    market: "United Kingdom",
+    objective: "Sales / ROAS",
+    metrics: [
+      { label: "ROAS", value: "18.85x", highlight: true },
+      { label: "Conversion Value", value: "$15,200", highlight: true },
+      { label: "Ad Spend", value: "$807" },
+      { label: "Cost / Conversion", value: "$3.68" },
+    ],
+    summary:
+      "Drove $15.2K in conversions for a UK clothing brand on Google Ads with an exceptional 18.85x ROAS and $3.68 cost per conversion.",
+    tags: ["Google Ads", "eCommerce", "UK", "Fashion"],
+  },
+  {
+    slug: "clothing-apparel-google-uk-2",
+    platform: "google",
+    category: ["ecommerce"],
+    niche: "Clothing & Apparel",
+    market: "United Kingdom",
+    objective: "Sales",
+    metrics: [
+      { label: "ROAS", value: "5.00x", highlight: true },
+      { label: "Conversion Value", value: "$9,500", highlight: true },
+      { label: "Ad Spend", value: "$1,900" },
+      { label: "Conversions", value: "114+" },
+    ],
+    summary:
+      "Generated 114+ conversions and $9.5K in value for a UK apparel brand on Google Ads with a consistent 5x ROAS.",
+    tags: ["Google Ads", "eCommerce", "UK", "Fashion"],
+  },
+  {
+    slug: "plumbing-leads-google-usa-1",
+    platform: "google",
+    category: ["lead-gen"],
+    niche: "Plumbing",
+    market: "USA",
+    objective: "Lead Generation",
+    metrics: [
+      { label: "Leads", value: "540", highlight: true },
+      { label: "Conversion Rate", value: "34.48%", highlight: true },
+      { label: "CPL", value: "$22.77" },
+      { label: "Ad Spend", value: "$12.3K" },
+    ],
+    summary:
+      "Generated 540 qualified plumbing leads in the US with a 34.48% conversion rate and a $22.77 cost per lead — demonstrating strong local service ad performance.",
+    tags: ["Google Ads", "Lead Gen", "USA", "Local Services"],
+  },
+  {
+    slug: "plumbing-leads-google-usa-2",
+    platform: "google",
+    category: ["lead-gen"],
+    niche: "Plumbing",
+    market: "USA",
+    objective: "Lead Generation",
+    metrics: [
+      { label: "Conversions", value: "188+", highlight: true },
+      { label: "Conversion Rate", value: "14%" },
+      { label: "Cost / Conversion", value: "$76.43" },
+      { label: "Ad Spend", value: "$14.4K" },
+    ],
+    summary:
+      "Drove 188+ conversions for a US plumbing business with a 14% conversion rate, focusing on high-intent search keywords and location targeting.",
+    tags: ["Google Ads", "Lead Gen", "USA", "Local Services"],
+  },
+  {
+    slug: "educational-training-youtube",
+    platform: "google",
+    category: ["lead-gen"],
+    niche: "Educational Training",
+    market: "YouTube",
+    objective: "Video Views / Awareness + Conversions",
+    metrics: [
+      { label: "TrueView Views", value: "354K", highlight: true },
+      { label: "View Rate", value: "35.35%", highlight: true },
+      { label: "Conversions", value: "56" },
+      { label: "Ad Spend", value: "$6,180" },
+    ],
+    summary:
+      "Delivered 354K TrueView views with a 35.35% view rate for an educational training brand on YouTube Ads, building brand awareness while generating direct conversions.",
+    tags: ["Google Ads", "YouTube", "Education", "Video"],
+  },
+];
