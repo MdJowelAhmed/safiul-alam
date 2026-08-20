@@ -10,7 +10,7 @@ export interface CaseStudyMetric {
 
 export interface CaseStudy {
   slug: string;
-  platform: "meta" | "google" | "tiktok";
+  platform: "meta" | "meta-sales" | "meta-leads" | "google" | "tiktok";
   category: ("ecommerce" | "lead-gen" | "tracking" | "automation")[];
   niche: string;
   market: string;

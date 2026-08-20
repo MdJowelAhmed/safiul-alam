@@ -8,12 +8,16 @@ import { type CaseStudy } from "@/types";
 import { cn } from "@/lib/utils";
 
 const platformLabel: Record<string, string> = {
+  "meta-sales": "Meta Sales Ads",
+  "meta-leads": "Meta Lead Ads",
   meta: "Meta Sales Ads",
   google: "Google Ads",
   tiktok: "TikTok Ads",
 };
 
 const platformColor: Record<string, string> = {
+  "meta-sales": "#1877f2",
+  "meta-leads": "#0084ff",
   meta: "#1877f2",
   google: "#ea4335",
   tiktok: "#ff0050",

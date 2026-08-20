@@ -6,11 +6,12 @@ import { CaseStudyCard } from "@/components/case-studies/CaseStudyCard";
 import { caseStudies } from "@/data/case-studies";
 import { cn } from "@/lib/utils";
 
-type FilterKey = "all" | "meta" | "google" | "tiktok" | "ecommerce" | "lead-gen";
+type FilterKey = "all" | "meta-sales" | "meta-leads" | "google" | "tiktok" | "ecommerce" | "lead-gen";
 
 const filters: { key: FilterKey; label: string }[] = [
   { key: "all", label: "All" },
-  { key: "meta", label: "Meta Sales Ads" },
+  { key: "meta-sales", label: "Meta Sales Ads" },
+  { key: "meta-leads", label: "Meta Lead Ads" },
   { key: "google", label: "Google Ads" },
   { key: "tiktok", label: "TikTok Ads" },
   { key: "ecommerce", label: "eCommerce" },
@@ -22,9 +23,11 @@ export function CaseStudyGrid() {
 
   const filtered = caseStudies.filter((study) => {
     if (active === "all") return true;
-    if (active === "meta" || active === "google" || active === "tiktok")
+    if (active === "meta-sales") return study.platform === "meta-sales" || study.platform === "meta";
+    if (active === "meta-leads") return study.platform === "meta-leads";
+    if (active === "google" || active === "tiktok")
       return study.platform === active;
-    return study.category.includes(active);
+    return study.category.includes(active as any);
   });
 
   return (

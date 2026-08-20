@@ -27,6 +27,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 const platformLabel: Record<string, string> = {
+  "meta-sales": "Meta Sales Ads",
+  "meta-leads": "Meta Lead Ads",
   meta: "Meta Sales Ads",
   google: "Google Ads",
   tiktok: "TikTok Ads",
