@@ -1,14 +1,34 @@
 import type { CaseStudy } from "@/types";
 
 export const caseStudies: CaseStudy[] = [
-  // ─── META ADS ───────────────────────────────────────────────
+  // ─── META SALES ADS ───────────────────────────────────────────
+  {
+    slug: "premium-fishing-magnet-nl",
+    platform: "meta",
+    category: ["ecommerce"],
+    niche: "Premium Fishing Magnet",
+    market: "Netherlands",
+    objective: "Website Purchases (Sales)",
+    image: "/assets/meta sales ads/Image code 100.png",
+    metrics: [
+      { label: "ROAS", value: "5.46x", highlight: true },
+      { label: "Purchases", value: "357" },
+      { label: "Purchase Value", value: "€17.2K+", highlight: true },
+      { label: "Ad Spend", value: "€3.16K" },
+      { label: "Reach", value: "232K+" },
+    ],
+    summary:
+      "Generated 357 online purchases through Meta Sales Ads, achieving a strong 5.46x Return on Ad Spend (ROAS) and driving over €17.2K in purchase value while spending €3.16K on advertising across 232K+ potential customers in the Netherlands.",
+    tags: ["Meta Sales Ads", "eCommerce", "Netherlands", "ROAS"],
+  },
   {
     slug: "bicycle-cycling-ecommerce-au",
     platform: "meta",
     category: ["ecommerce"],
     niche: "Bicycle & Cycling",
     market: "Australia & New Zealand",
-    objective: "Sales / ROAS",
+    objective: "Website Purchases (Sales)",
+    image: "/assets/meta sales ads/Image code 101.png",
     metrics: [
       { label: "ROAS", value: "42.98x", highlight: true },
       { label: "Purchases", value: "148" },
@@ -17,8 +37,8 @@ export const caseStudies: CaseStudy[] = [
       { label: "Reach", value: "93K+" },
     ],
     summary:
-      "Scaled a cycling eCommerce brand in Australia and New Zealand to an extraordinary 42.98x ROAS through precision audience targeting, creative testing, and campaign structure optimisation.",
-    tags: ["Meta Ads", "eCommerce", "ROAS", "Australia"],
+      "Generated 148 online purchases through Meta Sales Ads. Achieved an exceptional 42.98x Return on Ad Spend (ROAS), driving over $293K in purchase value while spending $6.8K on advertising across 93K+ potential customers in Australia and New Zealand.",
+    tags: ["Meta Sales Ads", "eCommerce", "ROAS", "Australia"],
   },
   {
     slug: "home-appliances-electronics-uk",
@@ -26,7 +46,8 @@ export const caseStudies: CaseStudy[] = [
     category: ["ecommerce"],
     niche: "Home Appliances & Consumer Electronics",
     market: "United Kingdom",
-    objective: "Sales / ROAS",
+    objective: "Website Purchases (Sales)",
+    image: "/assets/meta sales ads/Image code 102.png",
     metrics: [
       { label: "ROAS", value: "7.05x", highlight: true },
       { label: "Purchases", value: "313" },
@@ -34,8 +55,8 @@ export const caseStudies: CaseStudy[] = [
       { label: "Reach", value: "209K+" },
     ],
     summary:
-      "Drove strong sales results for a UK home appliances brand, achieving 313 purchases and 7.05x ROAS with extensive reach across the target market.",
-    tags: ["Meta Ads", "eCommerce", "UK", "Electronics"],
+      "Generated 313 online purchases through Meta Sales Ads, achieving a strong 7.05x Return on Ad Spend (ROAS) and producing $49,859.25 in purchase value while reaching over 209K potential customers across the UK.",
+    tags: ["Meta Sales Ads", "eCommerce", "UK", "Electronics"],
   },
   {
     slug: "home-decorative-lighting-nl",
@@ -43,17 +64,18 @@ export const caseStudies: CaseStudy[] = [
     category: ["ecommerce"],
     niche: "Home & Decorative Lighting",
     market: "Netherlands",
-    objective: "Sales / ROAS",
+    objective: "Website Purchases (Sales)",
+    image: "/assets/meta sales ads/Image code 103.png",
     metrics: [
       { label: "ROAS", value: "5.00x", highlight: true },
       { label: "Purchases", value: "1,113" },
-      { label: "Estimated Revenue", value: "€122K+", highlight: true },
+      { label: "Revenue", value: "€122K+", highlight: true },
       { label: "Ad Spend", value: "€24.4K" },
       { label: "CPA", value: "€21.95" },
     ],
     summary:
-      "Scaled a Dutch lighting brand to over 1,100 purchases and €122K+ revenue with consistent 5x ROAS and a low €21.95 cost per acquisition.",
-    tags: ["Meta Ads", "eCommerce", "Netherlands", "Lighting"],
+      "Generated 1,113 website purchases over a 6-month campaign period, achieving a 5.00x Return on Ad Spend (ROAS) and generating an estimated €122K+ in revenue from €24.4K in advertising spend with an efficient €21.95 CPA.",
+    tags: ["Meta Sales Ads", "eCommerce", "Netherlands", "Lighting"],
   },
   {
     slug: "beauty-cosmetics-uae",
@@ -61,7 +83,8 @@ export const caseStudies: CaseStudy[] = [
     category: ["ecommerce"],
     niche: "Beauty & Cosmetics",
     market: "UAE",
-    objective: "Sales / ROAS",
+    objective: "Website Purchases (Sales)",
+    image: "/assets/meta sales ads/Image code 104.png",
     metrics: [
       { label: "ROAS", value: "2.36x", highlight: true },
       { label: "Purchases", value: "105" },
@@ -70,8 +93,43 @@ export const caseStudies: CaseStudy[] = [
       { label: "Reach", value: "99,517" },
     ],
     summary:
-      "Generated consistent purchase results for a UAE beauty brand, reaching 99K+ potential customers and maintaining profitable ROAS in a competitive market.",
-    tags: ["Meta Ads", "eCommerce", "UAE", "Beauty"],
+      "Generated 105 website purchases in 42 days, achieving a 2.36x Return on Ad Spend (ROAS) and driving 18,192.00 AED in purchase value from 7,724.25 AED in advertising spend while reaching 99,517 potential customers across the UAE.",
+    tags: ["Meta Sales Ads", "eCommerce", "UAE", "Beauty"],
+  },
+  {
+    slug: "home-kitchen-ecommerce-uae-1",
+    platform: "meta",
+    category: ["ecommerce"],
+    niche: "Home & Kitchen",
+    market: "UAE",
+    objective: "Website Purchases (Sales)",
+    image: "/assets/meta sales ads/Image code 105.png",
+    metrics: [
+      { label: "Purchases", value: "241", highlight: true },
+      { label: "CPA", value: "$3.38", highlight: true },
+      { label: "Reach", value: "153K+" },
+      { label: "Ad Spend", value: "$814" },
+    ],
+    summary:
+      "Managed 9 active Meta sales campaigns targeting the UAE market, generating 241 website purchases with an average $3.38 CPA and reaching 153,162 potential customers while spending only $814.00.",
+    tags: ["Meta Sales Ads", "eCommerce", "UAE", "Home & Kitchen"],
+  },
+  {
+    slug: "home-kitchen-ecommerce-uae-2",
+    platform: "meta",
+    category: ["ecommerce"],
+    niche: "Home & Kitchen",
+    market: "UAE",
+    objective: "Website Purchases (Sales)",
+    image: "/assets/meta sales ads/Image code 106.png",
+    metrics: [
+      { label: "Purchases", value: "1,878", highlight: true },
+      { label: "CPA", value: "$3.48", highlight: true },
+      { label: "Reach", value: "1.0M+" },
+    ],
+    summary:
+      "Managed 9 high-performing Meta sales campaigns targeting the UAE market, generating 1,878 website purchases with an efficient $3.48 average CPA and reaching over 1.0M+ potential customers.",
+    tags: ["Meta Sales Ads", "eCommerce", "UAE", "Scale"],
   },
   {
     slug: "industrial-adhesives-uk",
@@ -79,7 +137,8 @@ export const caseStudies: CaseStudy[] = [
     category: ["ecommerce"],
     niche: "Industrial Adhesives / Epoxy",
     market: "United Kingdom",
-    objective: "Sales",
+    objective: "Website Purchases (Sales)",
+    image: "/assets/meta sales ads/Image code 107.png",
     metrics: [
       { label: "ROAS", value: "11.89x", highlight: true },
       { label: "Purchases", value: "286" },
@@ -88,8 +147,8 @@ export const caseStudies: CaseStudy[] = [
       { label: "CPA", value: "£5.99" },
     ],
     summary:
-      "Achieved 11.89x ROAS for a UK industrial adhesives brand with an ultra-low £5.99 CPA across 286 purchases, demonstrating strong performance in a niche B2B-adjacent market.",
-    tags: ["Meta Ads", "eCommerce", "UK", "Industrial"],
+      "Generated 286 website purchases with an average £5.99 CPA, producing £20,368.85 in purchase value from £1,712.40 in ad spend. Achieved an overall 11.89x ROAS while reaching 102,270 potential customers across the UK.",
+    tags: ["Meta Sales Ads", "eCommerce", "UK", "Industrial"],
   },
   {
     slug: "furniture-usa",
@@ -97,7 +156,8 @@ export const caseStudies: CaseStudy[] = [
     category: ["ecommerce"],
     niche: "Furniture",
     market: "USA",
-    objective: "Sales",
+    objective: "Website Purchases (Sales)",
+    image: "/assets/meta sales ads/Image code 108.png",
     metrics: [
       { label: "ROAS", value: "10.81x", highlight: true },
       { label: "Purchases", value: "309" },
@@ -106,8 +166,8 @@ export const caseStudies: CaseStudy[] = [
       { label: "CPA", value: "$17.28" },
     ],
     summary:
-      "Delivered 10.81x ROAS for a US furniture brand, generating $57K+ in purchase value from 309 transactions at just $17.28 cost per acquisition.",
-    tags: ["Meta Ads", "eCommerce", "USA", "Furniture"],
+      "Generated 309 website purchases while maintaining an efficient $17.28 average CPA, producing $57,742.22 in purchase value from $5,339.86 in ad spend to achieve an impressive 10.81x ROAS.",
+    tags: ["Meta Sales Ads", "eCommerce", "USA", "Furniture"],
   },
   {
     slug: "luxury-lighting-nl",
@@ -115,19 +175,74 @@ export const caseStudies: CaseStudy[] = [
     category: ["ecommerce"],
     niche: "Luxury Lighting",
     market: "Netherlands",
-    objective: "Sales / Scale",
+    objective: "Website Purchases (Sales)",
+    image: "/assets/meta sales ads/Image code 109.png",
     metrics: [
       { label: "ROAS", value: "6.48x", highlight: true },
       { label: "Purchases", value: "2,009" },
       { label: "Purchase Value", value: "€260,278", highlight: true },
-      { label: "Ad Spend", value: "€40,194" },
+      { label: "Ad Spend", value: "€40,195" },
       { label: "CPA", value: "€20.01" },
       { label: "Reach", value: "1.07M+" },
-      { label: "Impressions", value: "5.29M+" },
     ],
     summary:
-      "Scaled a luxury lighting brand in the Netherlands to over 2,000 purchases and €260K+ revenue. Achieved 1.07M reach and 5.29M+ impressions while maintaining a 6.48x ROAS.",
-    tags: ["Meta Ads", "eCommerce", "Netherlands", "Luxury", "Scale"],
+      "Scaled a luxury lighting brand over a 10-month project duration (5 Jul 2025 – 5 May 2026), generating 2,009 website purchases with an efficient €20.01 average CPA and driving €260,278.70 in purchase value from €40,194.61 in ad spend.",
+    tags: ["Meta Sales Ads", "eCommerce", "Netherlands", "Luxury", "Scale"],
+  },
+  {
+    slug: "clothing-fashion-ecommerce-uk-1",
+    platform: "meta",
+    category: ["ecommerce"],
+    niche: "Clothing & Fashion",
+    market: "United Kingdom",
+    objective: "Website Purchases (Sales)",
+    image: "/assets/meta sales ads/Image code 110.jpeg",
+    metrics: [
+      { label: "Purchases", value: "373", highlight: true },
+      { label: "CPA", value: "£7.21", highlight: true },
+      { label: "Ad Spend", value: "£2,689.65" },
+      { label: "Reach", value: "257K+" },
+    ],
+    summary:
+      "Generated 373 website purchases with an average £7.21 CPA. Reached 257,946 potential customers through Meta Sales Ads while spending £2,689.65 and maintaining an efficient 2.29 average frequency.",
+    tags: ["Meta Sales Ads", "eCommerce", "UK", "Fashion"],
+  },
+  {
+    slug: "ecommerce-sales-sweden",
+    platform: "meta",
+    category: ["ecommerce"],
+    niche: "eCommerce Sales",
+    market: "Sweden",
+    objective: "Website Purchases (Sales)",
+    image: "/assets/meta sales ads/Image code 111.png",
+    metrics: [
+      { label: "ROAS", value: "16.67x", highlight: true },
+      { label: "Purchases", value: "535" },
+      { label: "Purchase Value", value: "kr645,430", highlight: true },
+      { label: "Ad Spend", value: "kr38,723" },
+      { label: "CPA", value: "kr72.38" },
+    ],
+    summary:
+      "Generated 535 website purchases across four Meta Sales Ads sales ad sets. Achieved an overall 16.67x Purchase ROAS and kr645,430.23 in purchase value from kr38,722.59 in ad spend with a kr72.38 average CPA.",
+    tags: ["Meta Sales Ads", "eCommerce", "Sweden", "ROAS"],
+  },
+  {
+    slug: "clothing-fashion-ecommerce-uk-2",
+    platform: "meta",
+    category: ["ecommerce"],
+    niche: "Clothing & Fashion",
+    market: "United Kingdom",
+    objective: "Website Purchases (Sales)",
+    image: "/assets/meta sales ads/Image code 112.jpeg",
+    metrics: [
+      { label: "Purchases", value: "156", highlight: true },
+      { label: "CPA", value: "£22.00", highlight: true },
+      { label: "Ad Spend", value: "£3,432.24" },
+      { label: "Reach", value: "137K+" },
+    ],
+    summary:
+      "Managed 3 high-performing sales campaigns in the UK. Generated 156 website purchases with an average £22.00 CPA, reaching 137,733 potential customers and delivering 294,784 impressions with £3,432.24 invested.",
+    tags: ["Meta Sales Ads", "eCommerce", "UK", "Fashion"],
   },
   {
     slug: "payroll-education-canada",
@@ -137,13 +252,13 @@ export const caseStudies: CaseStudy[] = [
     market: "Canada",
     objective: "Lead Generation",
     metrics: [
-      { label: "Platform", value: "Meta Ads" },
+      { label: "Platform", value: "Meta Sales Ads" },
       { label: "Objective", value: "Lead Generation" },
       { label: "Market", value: "Canada" },
     ],
     summary:
       "Generated qualified leads for a Canadian payroll education provider, targeting HR professionals and small business owners seeking compliance training.",
-    tags: ["Meta Ads", "Lead Gen", "Canada", "Education"],
+    tags: ["Meta Sales Ads", "Lead Gen", "Canada", "Education"],
   },
   {
     slug: "salon-beauty-consulting-usa",
@@ -153,13 +268,13 @@ export const caseStudies: CaseStudy[] = [
     market: "USA",
     objective: "Lead Generation",
     metrics: [
-      { label: "Platform", value: "Meta Ads" },
+      { label: "Platform", value: "Meta Sales Ads" },
       { label: "Objective", value: "Lead Generation" },
       { label: "Market", value: "USA" },
     ],
     summary:
       "Drove inbound consultation requests for a US-based salon business consultant, targeting salon owners and beauty entrepreneurs.",
-    tags: ["Meta Ads", "Lead Gen", "USA", "Beauty"],
+    tags: ["Meta Sales Ads", "Lead Gen", "USA", "Beauty"],
   },
   {
     slug: "custom-sportswear-uk",
@@ -240,6 +355,7 @@ export const caseStudies: CaseStudy[] = [
     niche: "eCommerce",
     market: "USA",
     objective: "Sales / ROAS",
+    image: "/assets/ads/Google-Ads-Reporting.webp",
     metrics: [
       { label: "ROAS", value: "18.04x", highlight: true },
       { label: "Conversion Value", value: "$6,670", highlight: true },

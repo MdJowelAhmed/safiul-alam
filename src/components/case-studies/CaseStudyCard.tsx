@@ -1,13 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
+import { ArrowUpRight, Image as ImageIcon } from "lucide-react";
 import { motion } from "framer-motion";
 import { type CaseStudy } from "@/types";
 import { cn } from "@/lib/utils";
 
 const platformLabel: Record<string, string> = {
-  meta: "Meta Ads",
+  meta: "Meta Sales Ads",
   google: "Google Ads",
   tiktok: "TikTok Ads",
 };
@@ -45,6 +46,35 @@ export function CaseStudyCard({ study, className }: CaseStudyCardProps) {
         (e.currentTarget as HTMLElement).style.borderColor = "var(--border)";
       }}
     >
+      {/* Optional Ad Image Banner */}
+      {study.image && (
+        <div className="relative w-full h-44 overflow-hidden border-b bg-[var(--surface-2)]" style={{ borderColor: "var(--border)" }}>
+          <Image
+            src={study.image}
+            alt={`${study.niche} campaign report`}
+            fill
+            className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: "linear-gradient(to bottom, transparent 40%, rgba(17, 17, 19, 0.8) 100%)",
+            }}
+          />
+          <span
+            className="absolute top-3 right-3 flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[10px] font-semibold backdrop-blur-md"
+            style={{
+              background: "rgba(0,0,0,0.65)",
+              color: "var(--text-muted)",
+              border: "1px solid var(--border)",
+            }}
+          >
+            <ImageIcon size={10} /> Result Proof
+          </span>
+        </div>
+      )}
+
       {/* Header */}
       <div className="flex items-start justify-between gap-3 p-5 pb-4">
         <div className="flex-1 min-w-0">

@@ -10,7 +10,7 @@ type FilterKey = "all" | "meta" | "google" | "tiktok" | "ecommerce" | "lead-gen"
 
 const filters: { key: FilterKey; label: string }[] = [
   { key: "all", label: "All" },
-  { key: "meta", label: "Meta Ads" },
+  { key: "meta", label: "Meta Sales Ads" },
   { key: "google", label: "Google Ads" },
   { key: "tiktok", label: "TikTok Ads" },
   { key: "ecommerce", label: "eCommerce" },

@@ -17,6 +17,7 @@ export interface CaseStudy {
   objective: string;
   duration?: string;
   spend?: string;
+  image?: string;
   metrics: CaseStudyMetric[];
   summary?: string;
   tags: string[];

@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import Image from "next/image";
+import { ArrowLeft, Image as ImageIcon } from "lucide-react";
 import type { Metadata } from "next";
 import { caseStudies } from "@/data/case-studies";
 import { Container } from "@/components/shared/Container";
@@ -25,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 const platformLabel: Record<string, string> = {
-  meta: "Meta Ads",
+  meta: "Meta Sales Ads",
   google: "Google Ads",
   tiktok: "TikTok Ads",
 };
@@ -91,7 +92,7 @@ export default async function CaseStudyPage({ params }: Props) {
       </div>
 
       <Container className="py-16">
-        {/* Metrics */}
+        {/* Campaign Metrics */}
         <section aria-label="Campaign metrics">
           <h2 className="mb-6 text-sm font-semibold uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>
             Campaign Results
@@ -120,14 +121,41 @@ export default async function CaseStudyPage({ params }: Props) {
           </div>
         </section>
 
+        {/* Ad / Campaign Reporting Proof Screenshot */}
+        {study.image && (
+          <section aria-label="Ad Reporting Screenshot" className="mt-12">
+            <div className="flex items-center gap-2 mb-4">
+              <ImageIcon size={16} style={{ color: "var(--accent)" }} />
+              <h2 className="text-sm font-semibold uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>
+                Verified Campaign Reporting & Creative Proof
+              </h2>
+            </div>
+            <div
+              className="relative overflow-hidden rounded-2xl border bg-[var(--surface)] p-2 shadow-2xl"
+              style={{ borderColor: "var(--border)" }}
+            >
+              <div className="relative w-full h-[350px] sm:h-[480px] rounded-xl overflow-hidden">
+                <Image
+                  src={study.image}
+                  alt={`${study.niche} dashboard reporting proof`}
+                  fill
+                  className="object-contain bg-black/40"
+                  sizes="(max-width: 1200px) 100vw, 1200px"
+                  priority
+                />
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* Summary */}
         {study.summary && (
-          <section aria-label="Campaign summary" className="mt-10">
+          <section aria-label="Campaign summary" className="mt-12">
             <h2 className="mb-4 text-sm font-semibold uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>
-              Summary
+              Campaign Overview & Strategy
             </h2>
             <p
-              className="max-w-2xl text-base leading-relaxed"
+              className="max-w-3xl text-base leading-relaxed"
               style={{ color: "var(--text-muted)" }}
             >
               {study.summary}
@@ -140,7 +168,7 @@ export default async function CaseStudyPage({ params }: Props) {
           {study.tags.map((tag) => (
             <span
               key={tag}
-              className="rounded-full border px-3 py-1 text-xs"
+              className="rounded-full border px-3 py-1 text-xs font-medium"
               style={{
                 background: "var(--surface)",
                 borderColor: "var(--border)",

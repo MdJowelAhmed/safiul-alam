@@ -1,11 +1,13 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
-import { MessageCircleMore } from "lucide-react";
+import { MessageCircleMore, Send, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { Container } from "@/components/shared/Container";
 import { siteConfig } from "@/data/site";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/shared/Motion";
+import { Input } from "@/components/ui/Input";
 
 const FacebookIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -29,6 +31,21 @@ const YouTubeIcon = () => (
 );
 
 export function ContactCTA() {
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || !email.includes("@")) {
+      setEmailError("Please enter a valid email address.");
+      return;
+    }
+    setEmailError("");
+    setSubmitted(true);
+  };
+
   return (
     <section
       id="contact"
@@ -38,7 +55,7 @@ export function ContactCTA() {
       <Container>
         <FadeIn>
           <div
-            className="relative overflow-hidden rounded-2xl border p-10 lg:p-16 text-center"
+            className="relative overflow-hidden rounded-2xl border p-8 lg:p-14 text-center"
             style={{
               background: "var(--surface)",
               borderColor: "var(--border)",
@@ -78,18 +95,65 @@ export function ContactCTA() {
                 Let&apos;s look at your current marketing, identify the biggest opportunity, and build a strategy around what actually matters to your business.
               </p>
 
-              {/* Primary CTA */}
+              {/* Direct Quick Inquiry Form with Day 6 Input Component */}
+              <div className="mb-10 text-left bg-[var(--surface-2)] p-6 rounded-xl border border-[var(--border)]">
+                {submitted ? (
+                  <div className="flex flex-col items-center justify-center py-6 text-center gap-3">
+                    <CheckCircle2 size={36} className="text-emerald-500 animate-bounce" />
+                    <h3 className="text-base font-semibold text-[var(--text)]">Message Received!</h3>
+                    <p className="text-xs text-[var(--text-muted)] max-w-sm">
+                      Thank you, {name || "there"}. Safiul will get back to you at <span className="text-[var(--accent)]">{email}</span> shortly.
+                    </p>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <Input
+                        label="Your Name"
+                        placeholder="Mohammad Safiul"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                      />
+                      <Input
+                        label="Email Address"
+                        type="email"
+                        placeholder="name@company.com"
+                        value={email}
+                        onChange={(e) => {
+                          setEmail(e.target.value);
+                          if (emailError) setEmailError("");
+                        }}
+                        error={emailError}
+                        helperText="We'll respond within 24 hours."
+                        required
+                      />
+                    </div>
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      type="submit"
+                      className="w-full flex items-center justify-center gap-2 rounded-lg py-3 text-sm font-semibold transition-colors cursor-pointer"
+                      style={{ background: "var(--accent)", color: "var(--bg)" }}
+                    >
+                      <Send size={16} /> Send Quick Inquiry
+                    </motion.button>
+                  </form>
+                )}
+              </div>
+
+              {/* Primary WhatsApp CTA */}
               <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="inline-block mb-8">
                 <Link
                   href={`https://wa.me/${siteConfig.whatsapp}`}
                   id="contact-cta-whatsapp"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-lg px-8 py-4 text-sm font-semibold transition-shadow hover:shadow-lg hover:shadow-green-900/20"
-                  style={{ background: "var(--accent)", color: "var(--bg)" }}
+                  className="inline-flex items-center gap-2 rounded-lg px-8 py-3.5 text-sm font-semibold transition-shadow hover:shadow-lg hover:shadow-green-900/20"
+                  style={{ background: "var(--surface-2)", color: "var(--text)", border: "1px solid var(--border)" }}
                 >
-                  <MessageCircleMore size={18} aria-hidden="true" />
-                  Let&apos;s Work Together
+                  <MessageCircleMore size={18} aria-hidden="true" style={{ color: "var(--accent)" }} />
+                  Chat Directly on WhatsApp
                 </Link>
               </motion.div>
 
