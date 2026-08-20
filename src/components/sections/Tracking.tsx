@@ -2,16 +2,67 @@
 
 import { Container } from "@/components/shared/Container";
 import { SectionHeading } from "@/components/shared/SectionHeading";
-import { Tag, Globe, Activity, Code2, ShoppingCart, BookOpen } from "lucide-react";
+import { Globe, Tag, Activity, Code2, ShoppingCart, BookOpen, CheckCircle2 } from "lucide-react";
 import { FadeIn, StaggerContainer, StaggerItem, HoverCard } from "@/components/shared/Motion";
+import { ImageZoom } from "@/components/case-studies/ImageZoom";
 
-const trackingStack = [
-  { id: "gtm", label: "Google Tag Manager", description: "Central tag management for all tracking scripts" },
-  { id: "ga4", label: "Google Analytics 4", description: "Full user journey measurement and event tracking" },
-  { id: "meta-pixel", label: "Meta Pixel + CAPI", description: "Browser and server-side conversion tracking" },
-  { id: "server-side", label: "Server-Side Tracking", description: "Accurate data, bypassing browser limitations" },
-  { id: "ecom-events", label: "eCommerce Event Tracking", description: "ViewContent, AddToCart, Purchase, InitiateCheckout" },
-  { id: "lead-tracking", label: "Lead & Booking Tracking", description: "Form submissions, calls, and appointment tracking" },
+export interface TrackingProject {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  tags: string[];
+}
+
+const trackingProjects: TrackingProject[] = [
+  {
+    id: "tracking-127",
+    title: "Meta Pixel & Booking Conversion Tracking",
+    description:
+      "Implemented Meta Pixel tracking via Google Tag Manager and enabled conversion tracking for the website-integrated booking page.",
+    image: "/assets/conversion tracking/Image code 127.jpg",
+    tags: ["Meta Pixel", "GTM", "Booking Tracking"],
+  },
+  {
+    id: "tracking-128",
+    title: "Meta Conversion Tracking Setup",
+    description:
+      "Implemented Meta Pixel tracking via Google Tag Manager for car rental, and driver applications.",
+    image: "/assets/conversion tracking/Image code 128.jpg",
+    tags: ["Meta Pixel", "GTM", "Lead Applications"],
+  },
+  {
+    id: "tracking-129",
+    title: "Meta Conversion Tracking Setup",
+    description:
+      "Implemented Meta Pixel tracking via Google Tag Manager and configured conversion events to accurately measure key actions across the service website.",
+    image: "/assets/conversion tracking/Image code 129.jpg",
+    tags: ["Meta Pixel", "GTM", "Custom Events"],
+  },
+  {
+    id: "tracking-130",
+    title: "E-commerce Server-Side Tracking & Analytics",
+    description:
+      "Implemented Meta Pixel, Google Analytics, Google Tag Manager, and server-side tracking to accurately measure key e-commerce events and customer actions.",
+    image: "/assets/conversion tracking/Image code 130.jpg",
+    tags: ["Server-Side CAPI", "GA4", "GTM", "eCommerce"],
+  },
+  {
+    id: "tracking-131",
+    title: "Meta & Google Conversion Tracking",
+    description:
+      "Implemented Meta Pixel and Google conversion tracking for a service website to measure key leads, inquiries, and conversion actions accurately.",
+    image: "/assets/conversion tracking/Image code 131.jpg",
+    tags: ["Meta Pixel", "Google Conversion Ads", "Lead Tracking"],
+  },
+  {
+    id: "tracking-132",
+    title: "Meta, Google & TikTok Conversion Tracking",
+    description:
+      "Implemented Meta, Google, and TikTok conversion tracking for a service website to accurately measure leads, inquiries, and key conversion actions across advertising platforms.",
+    image: "/assets/conversion tracking/Image code 132.jpeg",
+    tags: ["Meta Pixel", "Google Ads", "TikTok Pixel", "Multi-Platform"],
+  },
 ];
 
 const flowSteps = [
@@ -28,20 +79,26 @@ export function Tracking() {
     <section
       id="tracking"
       aria-labelledby="tracking-heading"
-      style={{ paddingTop: "var(--section-y)", paddingBottom: "var(--section-y)" }}
+      className="border-t"
+      style={{
+        paddingTop: "var(--section-y)",
+        paddingBottom: "var(--section-y)",
+        borderColor: "var(--border)",
+        background: "var(--surface)",
+      }}
     >
       <Container>
         <FadeIn>
           <SectionHeading
-            eyebrow="Measurement"
-            title="Analytics & Conversion Tracking"
-            description="Accurate attribution is the foundation of every campaign decision. I build tracking systems that capture every meaningful conversion event across the full funnel."
+            eyebrow="Measurement & Attribution"
+            title="Analytics & Conversion Tracking Implementations"
+            description="Accurate attribution is the foundation of every campaign decision. Explore real client setups where I implemented Meta Pixel, Server-Side CAPI, GA4, TikTok Pixel, and GTM event mapping."
             className="mb-12"
           />
         </FadeIn>
 
-        {/* Flow diagram */}
-        <StaggerContainer staggerChildren={0.08} className="mb-12 flex flex-wrap items-center justify-center gap-0">
+        {/* Measurement Flow Diagram */}
+        <StaggerContainer staggerChildren={0.08} className="mb-14 flex flex-wrap items-center justify-center gap-0">
           {flowSteps.map(({ label, icon: Icon }, index) => (
             <StaggerItem key={label} className="flex items-center">
               <HoverCard className="flex flex-col items-center gap-2 px-4 py-3">
@@ -60,7 +117,7 @@ export function Tracking() {
               </HoverCard>
               {index < flowSteps.length - 1 && (
                 <div
-                  className="h-px w-6 shrink-0"
+                  className="h-px w-6 shrink-0 hidden sm:block"
                   style={{ background: "var(--border)" }}
                   aria-hidden="true"
                 />
@@ -69,54 +126,64 @@ export function Tracking() {
           ))}
         </StaggerContainer>
 
-        {/* Tracking stack grid */}
-        <StaggerContainer staggerChildren={0.08} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {trackingStack.map((item) => (
+        {/* Real Tracking Projects Showcase Grid */}
+        <StaggerContainer staggerChildren={0.1} className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {trackingProjects.map((item) => (
             <StaggerItem key={item.id}>
               <HoverCard
-                className="rounded-xl border p-5 transition-colors duration-150 h-full"
+                className="group flex flex-col rounded-2xl border transition-all duration-300 overflow-hidden h-full shadow-lg"
                 style={{
-                  background: "var(--surface)",
+                  background: "var(--bg)",
                   borderColor: "var(--border)",
                 }}
               >
-                <div
-                  className="mb-3 h-1.5 w-8 rounded-full"
-                  style={{ background: "var(--accent)" }}
-                  aria-hidden="true"
-                />
-                <h3 className="mb-1.5 text-sm font-semibold" style={{ color: "var(--text)" }}>
-                  {item.label}
-                </h3>
-                <p className="text-xs leading-relaxed" style={{ color: "var(--text-muted)" }}>
-                  {item.description}
-                </p>
+                {/* Image Zoom Proof Container */}
+                <div className="p-2">
+                  <ImageZoom
+                    src={item.image}
+                    alt={`${item.title} proof screenshot`}
+                    title=""
+                    zoomLevel={1.5}
+                    lensSize={220}
+                  />
+                </div>
+
+                {/* Card Content */}
+                <div className="flex flex-1 flex-col p-5 pt-3">
+                  {/* Tag Badges */}
+                  <div className="flex flex-wrap gap-1.5 mb-3">
+                    {item.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-full px-2.5 py-0.5 text-[10px] font-semibold"
+                        style={{
+                          background: "var(--surface-2)",
+                          color: "var(--accent)",
+                          border: "1px solid var(--border)",
+                        }}
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  <h3 className="mb-2 text-base font-semibold leading-snug" style={{ color: "var(--text)" }}>
+                    {item.title}
+                  </h3>
+
+                  <p className="text-xs leading-relaxed flex-1" style={{ color: "var(--text-muted)" }}>
+                    {item.description}
+                  </p>
+
+                  <div className="mt-4 pt-3 border-t flex items-center gap-1.5 text-[11px] font-medium" style={{ borderColor: "var(--border)", color: "var(--accent)" }}>
+                    <CheckCircle2 size={13} />
+                    <span>Verified Implementation</span>
+                  </div>
+                </div>
               </HoverCard>
             </StaggerItem>
           ))}
         </StaggerContainer>
-
-        {/* TikTok tracking mention */}
-        <FadeIn delay={0.2}>
-          <HoverCard
-            className="mt-6 rounded-xl border p-5 flex items-start gap-4"
-            style={{ background: "var(--surface)", borderColor: "var(--border)" }}
-          >
-            <div
-              className="shrink-0 mt-0.5 h-5 w-5 rounded-full border-2"
-              style={{ borderColor: "var(--accent)" }}
-              aria-hidden="true"
-            />
-            <div>
-              <h3 className="mb-1 text-sm font-semibold" style={{ color: "var(--text)" }}>
-                TikTok Conversion Tracking
-              </h3>
-              <p className="text-xs leading-relaxed" style={{ color: "var(--text-muted)" }}>
-                TikTok Pixel setup, Events API integration, and conversion event mapping to ensure TikTok campaigns optimise against accurate purchase and lead data.
-              </p>
-            </div>
-          </HoverCard>
-        </FadeIn>
       </Container>
     </section>
   );
