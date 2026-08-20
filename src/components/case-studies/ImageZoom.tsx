@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useRef, MouseEvent, TouchEvent } from "react";
-import { ZoomIn, ZoomOut, Image as ImageIcon } from "lucide-react";
+import { useState, useRef, useEffect, MouseEvent, TouchEvent } from "react";
+import { createPortal } from "react-dom";
+import { ZoomIn, ZoomOut, Image as ImageIcon, Maximize2, X } from "lucide-react";
 
 interface ImageZoomProps {
   src: string;
@@ -10,6 +11,7 @@ interface ImageZoomProps {
   zoomLevel?: number;
   lensSize?: number;
   className?: string;
+  expandOnHover?: boolean;
 }
 
 export function ImageZoom({
@@ -20,11 +22,17 @@ export function ImageZoom({
   lensSize = 280,
   className = "",
 }: ImageZoomProps) {
+  const [mounted, setMounted] = useState(false);
   // Zoom mode is disabled (false) by default
   const [isZoomActive, setIsZoomActive] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [pos, setPos] = useState({ x: 0, y: 0, width: 0, height: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const updatePosition = (clientX: number, clientY: number) => {
     if (!containerRef.current) return;
@@ -32,7 +40,6 @@ export function ImageZoom({
     const x = clientX - rect.left;
     const y = clientY - rect.top;
 
-    // Clamp position within container bounds
     const clampedX = Math.max(0, Math.min(x, rect.width));
     const clampedY = Math.max(0, Math.min(y, rect.height));
 
@@ -58,7 +65,7 @@ export function ImageZoom({
 
   return (
     <div className={`w-full ${className}`}>
-      {/* Header Bar with Title on left and Toggle Switch on right (justify-between) */}
+      {/* Header Bar with Title on left and Toggle Switch on right */}
       {title && (
         <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
           <div className="flex items-center gap-2">
@@ -71,63 +78,81 @@ export function ImageZoom({
             </h2>
           </div>
 
-          {/* Toggle Switch Button */}
-          <button
-            type="button"
-            onClick={() => setIsZoomActive((prev) => !prev)}
-            className="flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-semibold backdrop-blur-md transition-all duration-200 border cursor-pointer hover:scale-105 active:scale-95"
-            style={
-              isZoomActive
-                ? {
-                    background: "var(--accent)",
-                    color: "var(--bg)",
-                    borderColor: "var(--accent)",
-                    boxShadow: "0 0 12px var(--accent-glow)",
-                  }
-                : {
-                    background: "var(--surface-2)",
-                    color: "var(--text-muted)",
-                    borderColor: "var(--border)",
-                  }
-            }
-            aria-pressed={isZoomActive}
-          >
-            {isZoomActive ? (
-              <>
-                <ZoomIn size={14} className="animate-pulse" />
-                <span>Zoom Lens: ON ({zoomLevel}x)</span>
-              </>
-            ) : (
-              <>
-                <ZoomOut size={14} />
-                <span>Enable Zoom Lens</span>
-              </>
-            )}
-
-            {/* Switch Knob Indicator */}
-            <span
-              className="inline-block w-7 h-4 rounded-full relative transition-colors duration-200 ml-1"
+          {/* Action Buttons: Zoom Lens Toggle & Fullscreen */}
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setIsModalOpen(true)}
+              className="flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold backdrop-blur-md transition-all duration-200 border cursor-pointer hover:scale-105"
               style={{
-                background: isZoomActive ? "rgba(0,0,0,0.3)" : "rgba(255,255,255,0.15)",
+                background: "var(--surface-2)",
+                color: "var(--text-muted)",
+                borderColor: "var(--border)",
               }}
+              title="Open Fullscreen View (70% Screen)"
             >
+              <Maximize2 size={13} />
+              <span className="hidden sm:inline">Fullscreen (70%)</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setIsZoomActive((prev) => !prev)}
+              className="flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-semibold backdrop-blur-md transition-all duration-200 border cursor-pointer hover:scale-105 active:scale-95"
+              style={
+                isZoomActive
+                  ? {
+                      background: "var(--accent)",
+                      color: "var(--bg)",
+                      borderColor: "var(--accent)",
+                      boxShadow: "0 0 12px var(--accent-glow)",
+                    }
+                  : {
+                      background: "var(--surface-2)",
+                      color: "var(--text-muted)",
+                      borderColor: "var(--border)",
+                    }
+              }
+              aria-pressed={isZoomActive}
+            >
+              {isZoomActive ? (
+                <>
+                  <ZoomIn size={14} className="animate-pulse" />
+                  <span>Zoom Lens: ON ({zoomLevel}x)</span>
+                </>
+              ) : (
+                <>
+                  <ZoomOut size={14} />
+                  <span>Enable Zoom Lens</span>
+                </>
+              )}
+
+              {/* Switch Knob Indicator */}
               <span
-                className="absolute top-0.5 w-3 h-3 rounded-full transition-all duration-200 shadow-sm"
+                className="inline-block w-7 h-4 rounded-full relative transition-colors duration-200 ml-1"
                 style={{
-                  left: isZoomActive ? "14px" : "2px",
-                  background: isZoomActive ? "#000" : "#fff",
+                  background: isZoomActive ? "rgba(0,0,0,0.3)" : "rgba(255,255,255,0.15)",
                 }}
-              />
-            </span>
-          </button>
+              >
+                <span
+                  className="absolute top-0.5 w-3 h-3 rounded-full transition-all duration-200 shadow-sm"
+                  style={{
+                    left: isZoomActive ? "14px" : "2px",
+                    background: isZoomActive ? "#000" : "#fff",
+                  }}
+                />
+              </span>
+            </button>
+          </div>
         </div>
       )}
 
       {/* Main Screenshot Container */}
       <div
         ref={containerRef}
-        className={`relative overflow-hidden select-none rounded-2xl border bg-[var(--surface)] p-2 shadow-2xl ${
-          isZoomActive ? "cursor-crosshair" : "cursor-default"
+        onClick={() => setIsModalOpen(true)}
+        className={`relative overflow-hidden select-none rounded-2xl border bg-[var(--surface)] p-2 shadow-2xl transition-all duration-300 ease-out ${
+          isZoomActive ? "cursor-crosshair" : "cursor-pointer"
         }`}
         style={{ borderColor: "var(--border)" }}
         onMouseEnter={() => setIsHovered(true)}
@@ -146,10 +171,25 @@ export function ImageZoom({
           <img
             src={src}
             alt={alt}
-            className="w-full h-auto max-h-[600px] object-contain block rounded-xl mx-auto"
+            className="w-full h-auto max-h-[600px] object-contain block rounded-xl mx-auto transition-transform duration-300 hover:scale-[1.02]"
             loading="eager"
           />
         </div>
+
+        {/* Hover Click-to-Expand Hint Badge */}
+        {!isZoomActive && isHovered && (
+          <div
+            className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-medium backdrop-blur-md z-20 pointer-events-none shadow-lg animate-bounce"
+            style={{
+              background: "rgba(0, 0, 0, 0.85)",
+              color: "var(--accent)",
+              border: "1px solid var(--accent)",
+            }}
+          >
+            <Maximize2 size={13} />
+            <span>Click for Fullscreen View (70% Size)</span>
+          </div>
+        )}
 
         {/* Circular Magnifying Glass Lens - Rendered only when active and hovered */}
         {isZoomActive && isHovered && pos.width > 0 && pos.height > 0 && (
@@ -185,6 +225,38 @@ export function ImageZoom({
           </div>
         )}
       </div>
+
+      {/* Fullscreen Lightbox Modal (Portal to document.body, taking 70% screen width & 70% screen height) */}
+      {isModalOpen && mounted && createPortal(
+        <div
+          className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/85 backdrop-blur-md p-4 sm:p-8 animate-in fade-in duration-200"
+          onClick={() => setIsModalOpen(false)}
+        >
+          {/* Modal Header Close Button */}
+          <button
+            type="button"
+            onClick={() => setIsModalOpen(false)}
+            className="absolute top-6 right-6 z-[100000] flex h-11 w-11 items-center justify-center rounded-full bg-black/80 text-white border border-white/20 backdrop-blur-md transition-all hover:bg-white/20 hover:scale-110 cursor-pointer shadow-2xl"
+            aria-label="Close fullscreen modal"
+          >
+            <X size={22} />
+          </button>
+
+          {/* Modal Content Box: 70% Width and 70% Height */}
+          <div
+            className="relative w-[70vw] h-[70vh] flex items-center justify-center rounded-2xl border bg-[#0d0e12] p-4 shadow-2xl overflow-hidden"
+            style={{ borderColor: "var(--border)" }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={src}
+              alt={alt}
+              className="w-full h-full object-contain rounded-xl select-none"
+            />
+          </div>
+        </div>,
+        document.body
+      )}
     </div>
   );
 }
