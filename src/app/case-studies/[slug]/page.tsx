@@ -6,6 +6,7 @@ import type { Metadata } from "next";
 import { caseStudies } from "@/data/case-studies";
 import { Container } from "@/components/shared/Container";
 import { siteConfig } from "@/data/site";
+import { ImageZoom } from "@/components/case-studies/ImageZoom";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -124,27 +125,13 @@ export default async function CaseStudyPage({ params }: Props) {
         {/* Ad / Campaign Reporting Proof Screenshot */}
         {study.image && (
           <section aria-label="Ad Reporting Screenshot" className="mt-12">
-            <div className="flex items-center gap-2 mb-4">
-              <ImageIcon size={16} style={{ color: "var(--accent)" }} />
-              <h2 className="text-sm font-semibold uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>
-                Verified Campaign Reporting & Creative Proof
-              </h2>
-            </div>
-            <div
-              className="relative overflow-hidden rounded-2xl border bg-[var(--surface)] p-2 shadow-2xl"
-              style={{ borderColor: "var(--border)" }}
-            >
-              <div className="relative w-full h-[350px] sm:h-[480px] rounded-xl overflow-hidden">
-                <Image
-                  src={study.image}
-                  alt={`${study.niche} dashboard reporting proof`}
-                  fill
-                  className="object-contain bg-black/40"
-                  sizes="(max-width: 1200px) 100vw, 1200px"
-                  priority
-                />
-              </div>
-            </div>
+            <ImageZoom
+              src={study.image}
+              alt={`${study.niche} dashboard reporting proof`}
+              title="Verified Campaign Reporting & Creative Proof"
+              zoomLevel={1.5}
+              lensSize={280}
+            />
           </section>
         )}
 
