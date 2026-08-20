@@ -151,10 +151,10 @@ export function ImageZoom({
       <div
         ref={containerRef}
         onClick={() => setIsModalOpen(true)}
-        className={`relative overflow-hidden select-none rounded-2xl border bg-[var(--surface)] p-2 shadow-2xl transition-all duration-300 ease-out ${
+        className={`relative overflow-hidden select-none rounded-xl border shadow-lg transition-all duration-300 ease-out ${
           isZoomActive ? "cursor-crosshair" : "cursor-pointer"
         }`}
-        style={{ borderColor: "var(--border)" }}
+        style={{ borderColor: "var(--border)", background: "transparent" }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         onMouseMove={handleMouseMove}
@@ -167,14 +167,12 @@ export function ImageZoom({
         onTouchEnd={() => setIsHovered(false)}
         onTouchMove={handleTouchMove}
       >
-        <div className="relative w-full overflow-hidden rounded-xl bg-black/40">
-          <img
-            src={src}
-            alt={alt}
-            className="w-full h-auto max-h-[600px] object-contain block rounded-xl mx-auto transition-transform duration-300 hover:scale-[1.02]"
-            loading="eager"
-          />
-        </div>
+        <img
+          src={src}
+          alt={alt}
+          className="w-full h-auto max-h-[600px] object-contain block rounded-xl mx-auto transition-transform duration-300 hover:scale-[1.02]"
+          loading="eager"
+        />
 
         {/* Hover Click-to-Expand Hint Badge */}
         {!isZoomActive && isHovered && (
@@ -242,16 +240,15 @@ export function ImageZoom({
             <X size={22} />
           </button>
 
-          {/* Modal Content Box: 70% Width and 70% Height */}
+          {/* Direct Clean Image Display without extra dark box border or padding */}
           <div
-            className="relative w-[70vw] h-[70vh] flex items-center justify-center rounded-2xl border bg-[#0d0e12] p-4 shadow-2xl overflow-hidden"
-            style={{ borderColor: "var(--border)" }}
+            className="relative flex items-center justify-center max-w-[70vw] max-h-[70vh]"
             onClick={(e) => e.stopPropagation()}
           >
             <img
               src={src}
               alt={alt}
-              className="w-full h-full object-contain rounded-xl select-none"
+              className="max-w-[70vw] max-h-[70vh] w-auto h-auto object-contain rounded-xl shadow-2xl select-none"
             />
           </div>
         </div>,
