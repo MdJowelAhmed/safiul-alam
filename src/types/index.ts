@@ -49,6 +49,8 @@ export interface Certification {
   date?: string;
   duration?: string;
   type: "certification" | "education";
+  link?: string;
+  logo?: string;
 }
 
 export interface FAQItem {
