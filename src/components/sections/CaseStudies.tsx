@@ -17,8 +17,8 @@ export function CaseStudies() {
     >
       <Container>
         <SectionHeading
-          eyebrow="Proof of Work"
-          title="Case Studies"
+          eyebrow="Selected Work Sample"
+          title="Proof of Work"
           description="Real campaigns. Real budgets. Real results. Explore measurable outcomes across Meta, Google, and TikTok advertising."
           className="mb-10"
         />

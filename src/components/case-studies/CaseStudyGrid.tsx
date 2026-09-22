@@ -14,8 +14,8 @@ const filters: { key: FilterKey; label: string }[] = [
   { key: "meta-leads", label: "Meta Lead Ads" },
   { key: "google", label: "Google Ads" },
   { key: "tiktok", label: "TikTok Ads" },
-  { key: "ecommerce", label: "eCommerce" },
-  { key: "lead-gen", label: "Lead Generation" },
+  // { key: "ecommerce", label: "eCommerce" },
+  // { key: "lead-gen", label: "Lead Generation" },
 ];
 
 const INITIAL_COUNT = 6;
