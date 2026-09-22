@@ -24,7 +24,7 @@ export function Skills() {
           <SectionHeading
             eyebrow="Capabilities"
             title="Skills & Competencies"
-            description="A cross-functional skill set spanning paid media, analytics, automation, and strategic thinking — built through real campaign experience."
+            // description="A cross-functional skill set spanning paid media, analytics, automation, and strategic thinking — built through real campaign experience."
             className="mb-12"
           />
         </FadeIn>

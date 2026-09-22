@@ -48,9 +48,10 @@ export const skillCategories: SkillCategory[] = [
       "Kit (ConvertKit)",
       "Zapier",
       "ManyChat",
-      "AI-Powered Marketing",
+       "CRM Automation",
+      "n8n",
       "Marketing Automation",
-      "CRM Automation",
+     
     ],
   },
   {
@@ -58,10 +59,11 @@ export const skillCategories: SkillCategory[] = [
     name: "Professional Skills",
     skills: [
       "Client Communication",
+      "Adaptability",
       "Relationship Management",
       "Team Leadership",
       "Collaboration",
-      "Adaptability",
+      
       "Resilience",
     ],
   },
