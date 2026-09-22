@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${siteConfig.fullName} — ${siteConfig.title}`,
     description:
-      "Performance Marketing Strategist | Meta, Google & TikTok Ads | $500K+ Managed Spend | 300+ Projects",
+      "Performance Marketing Strategist | Meta, Google & TikTok Ads | $1M+ Managed Spend | 300+ Projects",
     creator: "@safiuldigital",
   },
   alternates: {
@@ -70,7 +70,7 @@ const jsonLd = {
       name: siteConfig.fullName,
       jobTitle: siteConfig.title,
       description:
-        "Performance Marketing Strategist with 2.5+ years of experience managing $500K+ in advertising spend across Meta, Google, TikTok, and LinkedIn Ads.",
+        "Performance Marketing Strategist with 2.5+ years of experience managing $1M+ in advertising spend across Meta, Google, TikTok, and LinkedIn Ads.",
       url: siteConfig.url,
       sameAs: [
         siteConfig.social.facebook,

@@ -91,14 +91,14 @@ export function Hero() {
             </FadeIn>
 
             {/* Tagline */}
-            <FadeIn delay={0.35}>
+            {/* <FadeIn delay={0.35}>
               <p
                 className="mb-4 text-xl font-medium leading-relaxed"
                 style={{ color: "var(--text)" }}
               >
                 I Help Businesses Acquire Customers and Grow Through Performance Marketing
               </p>
-            </FadeIn>
+            </FadeIn> */}
 
             {/* Supporting copy */}
             <FadeIn delay={0.45}>
@@ -170,7 +170,7 @@ export function Hero() {
             </FadeIn>
 
             {/* Credential metrics */}
-            <StaggerContainer delayChildren={0.75} staggerChildren={0.1} className="mt-12 flex flex-wrap gap-6 sm:gap-10">
+            {/* <StaggerContainer delayChildren={0.75} staggerChildren={0.1} className="mt-12 flex flex-wrap gap-6 sm:gap-10">
               {siteConfig.metrics.map(({ label, value, suffix }) => (
                 <StaggerItem key={label} className="space-y-0.5">
                   <p
@@ -184,7 +184,7 @@ export function Hero() {
                   </p>
                 </StaggerItem>
               ))}
-            </StaggerContainer>
+            </StaggerContainer> */}
           </div>
 
           {/* Right Column: Premium Profile Image Showcase */}

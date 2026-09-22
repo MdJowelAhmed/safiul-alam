@@ -17,7 +17,8 @@ export const siteConfig: SiteConfig = {
   metrics: [
     { label: "Years Experience", value: "2.5", suffix: "+" },
     { label: "Projects Completed", value: "300", suffix: "+" },
-    { label: "Managed Ad Spend", value: "$500K", suffix: "+" },
-    { label: "Potential Customers Reached", value: "1M", suffix: "+" },
+    { label: "Managed Ad Spend", value: "$1M", suffix: "+" },
+    { label: "Clients Satisfied", value: "95%",  },
+    // { label: "Potential Customers Reached", value: "1M", suffix: "+" },
   ],
 };

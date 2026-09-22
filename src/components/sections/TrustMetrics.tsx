@@ -19,12 +19,12 @@ export function TrustMetrics() {
           className="grid grid-cols-2 divide-x divide-y md:grid-cols-4 md:divide-y-0"
           style={{ borderColor: "var(--border)" }}
         >
-          {siteConfig.metrics.map(({ label, value, suffix }) => (
+          {siteConfig.metrics.map(({ label, value }) => (
             <StaggerItem key={label}>
               <HoverCard className="flex flex-col items-center justify-center gap-2 px-6 py-10 text-center">
                 <AnimatedNumber
                   value={value}
-                  suffix={suffix}
+                  // suffix={suffix}
                   className="text-4xl font-bold tabular-nums tracking-tight"
                 />
                 <p

@@ -16,7 +16,7 @@ export const workExperience: WorkExperience[] = [
     company: "Independent Client Projects",
     period: "2024 – Present",
     description:
-      "Working with businesses across the UK, USA, UAE, Netherlands, Canada and Australia to plan and execute paid advertising campaigns on Meta, Google, and TikTok. Managed $500K+ in advertising spend across 300+ projects.",
+      "Working with businesses across the UK, USA, UAE, Netherlands, Canada and Australia to plan and execute paid advertising campaigns on Meta, Google, and TikTok. Managed $1M+ in advertising spend across 300+ projects.",
     current: true,
   },
   {
