@@ -8,7 +8,7 @@ import { Container } from "@/components/shared/Container";
 import { siteConfig } from "@/data/site";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/shared/Motion";
 
-const platforms = ["Meta Ads", "Google Ads", "TikTok Ads", "LinkedIn Ads"];
+const platforms = ["Meta Ads", "Google Ads", "TikTok Ads", "LinkedIn Ads", "Convertion Tracking", "Marketing Automation", "Content Strategy"];
 
 export function Hero() {
   return (

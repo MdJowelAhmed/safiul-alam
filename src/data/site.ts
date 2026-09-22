@@ -6,7 +6,7 @@ export const siteConfig: SiteConfig = {
   title: "Performance Marketing Strategist",
   tagline: "I Help Businesses Acquire Customers and Grow Through Performance Marketing",
   description:
-    "I help businesses generate qualified leads, acquire customers, and improve marketing performance through strategic advertising, accurate tracking, conversion optimization, content strategy, marketing automation, and AI.",
+    "I help businesses generate qualified leads, acquire customers, and improve marketing performance through strategic advertising, accurate tracking, conversion optimization, content strategy, marketing automation, and AI. I combine strategy, data, and continuous optimization to create measurable marketing programs focused on better acquisition, stronger performance, and sustainable business growth.",
   url: "https://safiuldigital.com",
   whatsapp: "01880961139",
   social: {

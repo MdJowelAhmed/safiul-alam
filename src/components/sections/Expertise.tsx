@@ -137,7 +137,7 @@ export function Expertise() {
                     <h3 className="mb-1.5 text-base font-semibold" style={{ color: "var(--text)" }}>
                       {service.title}
                     </h3>
-                    <p className="text-sm leading-relaxed line-clamp-3" style={{ color: "var(--text-muted)" }}>
+                    <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
                       {service.description}
                     </p>
                   </div>

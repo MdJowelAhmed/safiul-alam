@@ -13,7 +13,7 @@ const frameworkSteps = [
   { step: "03", label: "Launch", description: "Execute campaigns with precision targeting and compelling creative." },
   { step: "04", label: "Track", description: "Measure every conversion event with accurate attribution." },
   { step: "05", label: "Test", description: "Run structured experiments across audiences, creatives, and offers." },
-  { step: "06", label: "Optimise", description: "Act on data to reduce costs and improve conversion rates." },
+  { step: "06", label: "Optimize", description: "Act on data to reduce costs and improve conversion rates." },
   { step: "07", label: "Scale", description: "Allocate budget to what works and grow profitably." },
 ];
 
@@ -42,16 +42,19 @@ export function About() {
               />
               <div className="space-y-4 text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
                 <p>
-                  I&apos;m Mohammad Safiul Alam — a performance marketing strategist with 2.5+ years of hands-on experience helping businesses across the UK, USA, UAE, Netherlands, Australia, Canada and beyond grow through paid advertising and data-driven marketing.
+                  I&apos;m Mohammad Safiul Alam, a Performance Marketing Strategist with 2.5+ years of hands-on experience helping businesses generate qualified leads, acquire customers, increase sales, and improve marketing performance.
                 </p>
                 <p>
-                  I&apos;ve managed over $500K in advertising spend across 300+ digital marketing projects on Meta, Google, TikTok and LinkedIn. My work sits at the intersection of strategy, data, and execution — I don&apos;t just run ads, I build acquisition systems.
+                  My work goes beyond campaign execution. I build strategies around the full customer acquisition journey, from market and audience research to campaign planning, creative testing, conversion tracking, optimization, and scaling. I work across Meta Ads, Google Ads, TikTok Ads, and LinkedIn Ads, supporting both lead generation and e-commerce growth.
                 </p>
                 <p>
-                  My approach is built on accurate measurement. I use GTM, GA4, Meta Pixel with Conversion API, and server-side tracking to ensure every decision is based on clean, reliable data. I also build out marketing automation workflows using GoHighLevel, Make.com and Kit to ensure leads are nurtured and converted efficiently after the first click.
+                  I connect paid media with analytics, conversion tracking, funnel optimization, and marketing automation to create a more measurable and connected marketing process. My technical experience includes Google Tag Manager, GA4, conversion tracking, conversion API, GoHighLevel, n8n, Make, and Kit.
                 </p>
                 <p>
-                  If a campaign isn&apos;t performing, I want to know exactly why — and I want data to show me. That mindset is what separates sustainable growth from guesswork.
+                  I also use AI within my marketing process to support research, strategy development, content and creative work, analysis, and operational efficiency. I combine these capabilities with practical marketing experience and human judgment to keep every decision aligned with the business objective.
+                </p>
+                <p>
+                  With 300+ digital marketing projects and $1M+ in managed advertising spend, I&apos;ve worked across different industries, business models, and campaign objectives. My focus goes beyond clicks and impressions to the metrics that matter to the business, including qualified leads, customer acquisition, sales, efficiency, and scalable growth.
                 </p>
               </div>
 
@@ -100,10 +103,16 @@ export function About() {
               style={{ background: "var(--surface)", borderColor: "var(--border)" }}
             >
               <p
-                className="mb-6 text-xs font-semibold uppercase tracking-widest"
+                className="mb-2 text-xs font-semibold uppercase tracking-widest"
                 style={{ color: "var(--accent)" }}
               >
                 My Performance Framework
+              </p>
+              <p
+                className="mb-6 text-xs leading-relaxed"
+                style={{ color: "var(--text-muted)" }}
+              >
+                I use this framework to build, measure, and continuously improve marketing performance, keeping every stage of the customer acquisition journey connected to a clear business objective.
               </p>
               <StaggerContainer staggerChildren={0.08} className="space-y-0">
                 {frameworkSteps.map((item, index) => (
