@@ -38,10 +38,19 @@ const workflows: AutomationWorkflow[] = [
     id: "hubspot-capi-workflow",
     title: "Meta Lead Qualification System Setup with HubSpot CRM",
     description:
-      "I built a lead management and qualification system connecting Meta Lead Ads with HubSpot. The system automatically brings leads into HubSpot, organizes them as Not Reviewed, Qualified, Potential, or Unqualified based on treatment interest and travel timeline, and sends Sales Qualified Lead signals back to Meta through the Conversions API to support better lead optimization.",
+      "I built a lead management and qualification system connecting Meta Lead Ads with HubSpot, automatically syncing leads and sending conversion data through the Conversions API for better lead optimization.",
     image: "/assets/marketing-automotion/Image code 133.jpg",
     tags: ["Meta Lead Ads", "HubSpot CRM", "Lead Qualification", "Server-Side CAPI"],
     steps: ["Meta Lead Capture", "HubSpot Auto Sync", "Qualification Logic", "Meta CAPI Feedback"],
+  },
+  {
+    id: "n8n-messenger-workflow",
+    title: "AI-Powered Facebook Messenger Automation | n8n",
+    description:
+      "I completed an n8n Facebook Messenger automation using Webhooks, Gemini AI, Memory, Google Sheets, and Google Calendar. It automatically handles customer messages, provides service information, maintains conversation context, filters AI responses, and schedules meetings when needed.",
+    image: "/assets/marketing-automotion/n8n automation 134.png",
+    tags: ["n8n", "Gemini AI", "Facebook Messenger", "Google Calendar", "Google Sheets"],
+    steps: ["Webhook Trigger", "Gemini AI & Memory", "Google Sheets Sync", "Google Calendar Booking"],
   },
 ];
 
@@ -95,8 +104,8 @@ export function Automation() {
           />
         </FadeIn>
 
-        {/* 3 Featured Workflows Grid */}
-        <StaggerContainer staggerChildren={0.12} className="grid gap-8 lg:grid-cols-3">
+        {/* Featured Workflows Grid */}
+        <StaggerContainer staggerChildren={0.12} className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {workflows.map((item) => (
             <StaggerItem key={item.id}>
               <HoverCard
