@@ -14,7 +14,7 @@ const navLinks = [
   { href: "#case-studies", label: "Case Studies" },
   { href: "#experience", label: "Experience" },
   { href: "#certifications", label: "Certifications" },
-  { href: "#contact", label: "Contact" },
+  // { href: "#contact", label: "Contact" },
 ];
 
 export function Header() {

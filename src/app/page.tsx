@@ -20,9 +20,11 @@ export default function HomePage() {
       <Expertise />
       <About />
       <ProofOfWork />
+        <Tracking />
+        <Automation />
       <CaseStudies />
-      <Tracking />
-      <Automation />
+    
+      
       <Experience />
       <Skills />
       <Certifications />
