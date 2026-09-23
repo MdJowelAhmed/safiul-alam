@@ -2,6 +2,7 @@ import { Hero } from "@/components/sections/Hero";
 import { TrustMetrics } from "@/components/sections/TrustMetrics";
 import { Expertise } from "@/components/sections/Expertise";
 import { About } from "@/components/sections/About";
+import { ProofOfWork } from "@/components/sections/ProofOfWork";
 import { CaseStudies } from "@/components/sections/CaseStudies";
 import { Tracking } from "@/components/sections/Tracking";
 import { Automation } from "@/components/sections/Automation";
@@ -18,6 +19,7 @@ export default function HomePage() {
       <TrustMetrics />
       <Expertise />
       <About />
+      <ProofOfWork />
       <CaseStudies />
       <Tracking />
       <Automation />

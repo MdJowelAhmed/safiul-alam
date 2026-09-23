@@ -10,6 +10,7 @@ const navLinks = [
   { href: "#home", label: "Home" },
   { href: "#about", label: "About Me" },
   { href: "#expertise", label: "Expertise" },
+  { href: "#proof-of-work", label: "Proof of Work" },
   { href: "#case-studies", label: "Case Studies" },
   { href: "#experience", label: "Experience" },
   { href: "#certifications", label: "Certifications" },
@@ -30,7 +31,7 @@ export function Header() {
 
   // Update active section & URL hash dynamically on scroll
   useEffect(() => {
-    const sectionIds = ["home", "about", "expertise", "case-studies", "experience", "certifications", "contact"];
+    const sectionIds = ["home", "about", "expertise", "proof-of-work", "case-studies", "experience", "certifications", "contact"];
     const sections = sectionIds
       .map((id) => document.getElementById(id))
       .filter((el): el is HTMLElement => el !== null);
