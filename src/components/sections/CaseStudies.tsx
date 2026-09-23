@@ -12,6 +12,7 @@ export interface PDFCaseStudy {
   id: string;
   number: string;
   title: string;
+  subtitle?: string;
   platform: "Meta Sales" | "Meta Leads" | "Google Ads" | "TikTok Ads";
   image: string;
   pdfUrl: string;
@@ -19,9 +20,55 @@ export interface PDFCaseStudy {
 
 const pdfCaseStudies: PDFCaseStudy[] = [
   {
+    id: "4472-tiktok-sales",
+    number: "4472",
+    title: "Scaling a UK Beauty & Skincare Brand on TikTok Shop",
+    subtitle: "From an Underperforming Account to a 13.10x ROI Growth Engine via TikTok Shop GMV Max",
+    platform: "TikTok Ads",
+    image: "/assets/case-studies/Tiktok sales -4472.webp",
+    pdfUrl: "/case-studies-pdf/4472 Tiktok sales.pdf",
+  },
+  {
+    id: "219-google-ads",
+    number: "219",
+    title: "Google Ads Case Study: Driving 18.85× ROAS for a U.S. Running Shoes Brand",
+    subtitle: "$807 Ad Spend → $15,200 Tracked Conversion Value → 219 Purchases",
+    platform: "Google Ads",
+    image: "/assets/case-studies/Google sales-219.webp",
+    pdfUrl: "/case-studies-pdf/219 Google ads.pdf",
+  },
+  {
+    id: "9263-meta-leads",
+    number: "9263",
+    title: "Meta Ads Case Study: Scalable Lead Generation for Beauty Consulting",
+    subtitle: "9,263 Qualified Applications at $4.09 Cost Per Lead",
+    platform: "Meta Leads",
+    image: "/assets/case-studies/meta leads --9263.webp",
+    pdfUrl: "/case-studies-pdf/9263 Meta Leads ads .pdf",
+  },
+  {
+    id: "2195-meta-leads",
+    number: "2195",
+    title: "Growing a Canadian Payroll Career Coaching Business Through Facebook & Instagram Ads",
+    subtitle: "How a research-first strategy generated 2,195 qualified leads in 4 month",
+    platform: "Meta Leads",
+    image: "/assets/case-studies/meta-leads-2195.webp",
+    pdfUrl: "/case-studies-pdf/2195 Meta Leads Ads .pdf",
+  },
+  {
+    id: "950-meta-leads",
+    number: "950",
+    title: "Scaling Qualified Lead Generation for a UK Custom Sportswear Brand Using Meta",
+    subtitle: "2,083 Landing Page Views | 950 Leads Generated",
+    platform: "Meta Leads",
+    image: "/assets/case-studies/meta leads --950.webp",
+    pdfUrl: "/case-studies-pdf/950 Meta Leads ads.pdf",
+  },
+  {
     id: "148-meta-sales",
     number: "148",
-    title: "148 Meta Sales Ads Case Study",
+    title: "From Test to Territory: How a 4.09× ROAS Launch Uncovered a 58.28× Opportunity",
+    subtitle: "Moving the budget to Australia turned a solid 4.09× return into 58.28×",
     platform: "Meta Sales",
     image: "/assets/case-studies/meta sales --148.webp",
     pdfUrl: "/case-studies-pdf/148-Meta Sales ads .pdf",
@@ -29,7 +76,8 @@ const pdfCaseStudies: PDFCaseStudy[] = [
   {
     id: "286-meta-sales",
     number: "286",
-    title: "286 Meta Sales Ads Case Study",
+    title: "Meta Ads Case Study: Scaling a UK Ecommerce Brand to £20,968 Revenue in 30 Days",
+    subtitle: "Construction Materials & Tile Installation Solutions (Ecommerce)",
     platform: "Meta Sales",
     image: "/assets/case-studies/meta sales - 286.webp",
     pdfUrl: "/case-studies-pdf/286 Meta Sales ads .pdf",
@@ -37,7 +85,8 @@ const pdfCaseStudies: PDFCaseStudy[] = [
   {
     id: "313-meta-sales",
     number: "313",
-    title: "313 Meta Sales Ads Case Study",
+    title: "Driving $49.8K in Revenue with a Creative-Led Meta Ads Strategy",
+    subtitle: "Beauty & Personal Care eCommerce | United States | Meta Ads | 3 Months",
     platform: "Meta Sales",
     image: "/assets/case-studies/meta sales -313.webp",
     pdfUrl: "/case-studies-pdf/313 Meta Sales ads .pdf",
@@ -45,7 +94,8 @@ const pdfCaseStudies: PDFCaseStudy[] = [
   {
     id: "336-meta-sales",
     number: "336",
-    title: "336 Meta Sales Case Study",
+    title: "Scaling a Dutch Magnet Fishing Brand to 336 Purchases at 5.34× ROAS",
+    subtitle: "Meta Ads | E-commerce | Netherlands | 5.6 Months",
     platform: "Meta Sales",
     image: "/assets/case-studies/meta sales -336.webp",
     pdfUrl: "/case-studies-pdf/336-Meta Sales.pdf",
@@ -53,50 +103,11 @@ const pdfCaseStudies: PDFCaseStudy[] = [
   {
     id: "2009-meta-sales",
     number: "2009",
-    title: "2009 Meta Sales Ads Case Study",
+    title: "Scaling a Luxury Lighting Brand on Meta: 2,009 Purchases & €260K Revenue",
+    subtitle: "6.48x ROAS over 10-month scaling period in Netherlands",
     platform: "Meta Sales",
     image: "/assets/case-studies/Meta sales -2009.webp",
     pdfUrl: "/case-studies-pdf/2009 Meta sales ads.pdf",
-  },
-  {
-    id: "950-meta-leads",
-    number: "950",
-    title: "950 Meta Leads Ads Case Study",
-    platform: "Meta Leads",
-    image: "/assets/case-studies/meta leads --950.webp",
-    pdfUrl: "/case-studies-pdf/950 Meta Leads ads.pdf",
-  },
-  {
-    id: "2195-meta-leads",
-    number: "2195",
-    title: "2195 Meta Leads Ads Case Study",
-    platform: "Meta Leads",
-    image: "/assets/case-studies/meta-leads-2195.webp",
-    pdfUrl: "/case-studies-pdf/2195 Meta Leads Ads .pdf",
-  },
-  {
-    id: "9263-meta-leads",
-    number: "9263",
-    title: "9263 Meta Leads Ads Case Study",
-    platform: "Meta Leads",
-    image: "/assets/case-studies/meta leads --9263.webp",
-    pdfUrl: "/case-studies-pdf/9263 Meta Leads ads .pdf",
-  },
-  {
-    id: "219-google-ads",
-    number: "219",
-    title: "219 Google Ads Case Study",
-    platform: "Google Ads",
-    image: "/assets/case-studies/Google sales-219.webp",
-    pdfUrl: "/case-studies-pdf/219 Google ads.pdf",
-  },
-  {
-    id: "4472-tiktok-sales",
-    number: "4472",
-    title: "4472 TikTok Sales Case Study",
-    platform: "TikTok Ads",
-    image: "/assets/case-studies/Tiktok sales -4472.webp",
-    pdfUrl: "/case-studies-pdf/4472 Tiktok sales.pdf",
   },
 ];
 
@@ -139,9 +150,9 @@ export function CaseStudies() {
       <Container>
         <FadeIn>
           <SectionHeading
-            eyebrow="Verified PDF Documentation"
+            eyebrow="Verified Campaign Documentation"
             title="Case Studies"
-            description="Explore in-depth PDF case studies detailing strategy execution, ad performance, and business growth. Click any card to preview the full PDF document inside the modal."
+            description="Explore detailed PDF case studies featuring actual campaign titles, strategy execution, and verified growth results. Click any card to preview the full PDF report inside the modal."
             className="mb-12"
           />
         </FadeIn>
@@ -158,7 +169,7 @@ export function CaseStudies() {
                 onKeyDown={(e) => {
                   if (e.key === "Enter" || e.key === " ") setSelectedPdf(cs);
                 }}
-                title={`View ${cs.title} PDF Modal`}
+                title={`View ${cs.title}`}
               >
                 <HoverCard
                   className="group flex flex-col rounded-2xl border transition-all duration-300 overflow-hidden h-full shadow-lg group-hover:border-[var(--accent)]"
@@ -200,9 +211,15 @@ export function CaseStudies() {
 
                   {/* Card Body */}
                   <div className="flex flex-1 flex-col p-5">
-                    <h3 className="mb-4 text-base font-bold leading-snug group-hover:text-[var(--accent)] transition-colors duration-200" style={{ color: "var(--text)" }}>
+                    <h3 className="mb-1.5 text-base font-bold leading-snug group-hover:text-[var(--accent)] transition-colors duration-200 line-clamp-2" style={{ color: "var(--text)" }}>
                       {cs.title}
                     </h3>
+
+                    {cs.subtitle && (
+                      <p className="text-xs font-medium mb-4 line-clamp-2" style={{ color: "var(--accent)" }}>
+                        {cs.subtitle}
+                      </p>
+                    )}
 
                     {/* Open Modal CTA Footer */}
                     <div
@@ -272,7 +289,7 @@ export function CaseStudies() {
                       {selectedPdf.title}
                     </h3>
                     <p className="text-[11px] font-medium" style={{ color: "var(--text-muted)" }}>
-                      {selectedPdf.platform} • Case Study PDF
+                      {selectedPdf.platform} • {selectedPdf.subtitle || "Case Study PDF"}
                     </p>
                   </div>
                 </div>
