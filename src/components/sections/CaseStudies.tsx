@@ -1,41 +1,134 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowUpRight, TrendingUp, Target, Award, Layers } from "lucide-react";
+import { FileText, ExternalLink, X, Eye } from "lucide-react";
 import { Container } from "@/components/shared/Container";
 import { SectionHeading } from "@/components/shared/SectionHeading";
-import { caseStudies } from "@/data/case-studies";
 import { FadeIn, StaggerContainer, StaggerItem, HoverCard } from "@/components/shared/Motion";
+import { motion, AnimatePresence } from "framer-motion";
 
-const categories = [
-  { id: "all", label: "All Case Studies" },
-  { id: "ecommerce", label: "eCommerce & Sales" },
-  { id: "lead-gen", label: "Lead Generation" },
-  { id: "high-roas", label: "High ROAS (5x+)" },
+export interface PDFCaseStudy {
+  id: string;
+  number: string;
+  title: string;
+  platform: "Meta Sales" | "Meta Leads" | "Google Ads" | "TikTok Ads";
+  image: string;
+  pdfUrl: string;
+}
+
+const pdfCaseStudies: PDFCaseStudy[] = [
+  {
+    id: "148-meta-sales",
+    number: "148",
+    title: "148 Meta Sales Ads Case Study",
+    platform: "Meta Sales",
+    image: "/assets/case-studies/meta sales --148.webp",
+    pdfUrl: "/case-studies-pdf/148-Meta Sales ads .pdf",
+  },
+  {
+    id: "286-meta-sales",
+    number: "286",
+    title: "286 Meta Sales Ads Case Study",
+    platform: "Meta Sales",
+    image: "/assets/case-studies/meta sales - 286.webp",
+    pdfUrl: "/case-studies-pdf/286 Meta Sales ads .pdf",
+  },
+  {
+    id: "313-meta-sales",
+    number: "313",
+    title: "313 Meta Sales Ads Case Study",
+    platform: "Meta Sales",
+    image: "/assets/case-studies/meta sales -313.webp",
+    pdfUrl: "/case-studies-pdf/313 Meta Sales ads .pdf",
+  },
+  {
+    id: "336-meta-sales",
+    number: "336",
+    title: "336 Meta Sales Case Study",
+    platform: "Meta Sales",
+    image: "/assets/case-studies/meta sales -336.webp",
+    pdfUrl: "/case-studies-pdf/336-Meta Sales.pdf",
+  },
+  {
+    id: "2009-meta-sales",
+    number: "2009",
+    title: "2009 Meta Sales Ads Case Study",
+    platform: "Meta Sales",
+    image: "/assets/case-studies/Meta sales -2009.webp",
+    pdfUrl: "/case-studies-pdf/2009 Meta sales ads.pdf",
+  },
+  {
+    id: "950-meta-leads",
+    number: "950",
+    title: "950 Meta Leads Ads Case Study",
+    platform: "Meta Leads",
+    image: "/assets/case-studies/meta leads --950.webp",
+    pdfUrl: "/case-studies-pdf/950 Meta Leads ads.pdf",
+  },
+  {
+    id: "2195-meta-leads",
+    number: "2195",
+    title: "2195 Meta Leads Ads Case Study",
+    platform: "Meta Leads",
+    image: "/assets/case-studies/meta-leads-2195.webp",
+    pdfUrl: "/case-studies-pdf/2195 Meta Leads Ads .pdf",
+  },
+  {
+    id: "9263-meta-leads",
+    number: "9263",
+    title: "9263 Meta Leads Ads Case Study",
+    platform: "Meta Leads",
+    image: "/assets/case-studies/meta leads --9263.webp",
+    pdfUrl: "/case-studies-pdf/9263 Meta Leads ads .pdf",
+  },
+  {
+    id: "219-google-ads",
+    number: "219",
+    title: "219 Google Ads Case Study",
+    platform: "Google Ads",
+    image: "/assets/case-studies/Google sales-219.webp",
+    pdfUrl: "/case-studies-pdf/219 Google ads.pdf",
+  },
+  {
+    id: "4472-tiktok-sales",
+    number: "4472",
+    title: "4472 TikTok Sales Case Study",
+    platform: "TikTok Ads",
+    image: "/assets/case-studies/Tiktok sales -4472.webp",
+    pdfUrl: "/case-studies-pdf/4472 Tiktok sales.pdf",
+  },
 ];
 
 export function CaseStudies() {
-  const [activeFilter, setActiveFilter] = useState("all");
+  const [selectedPdf, setSelectedPdf] = useState<PDFCaseStudy | null>(null);
 
-  const filteredStudies = caseStudies.filter((cs) => {
-    if (activeFilter === "ecommerce") return cs.category.includes("ecommerce");
-    if (activeFilter === "lead-gen") return cs.category.includes("lead-gen");
-    if (activeFilter === "high-roas") {
-      const roasMetric = cs.metrics.find((m) => m.label.toLowerCase().includes("roas") || m.label.toLowerCase().includes("roi"));
-      if (!roasMetric) return false;
-      const num = parseFloat(roasMetric.value);
-      return !isNaN(num) && num >= 5.0;
+  // Lock body scroll when PDF modal is active
+  useEffect(() => {
+    if (selectedPdf) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
     }
-    return true;
-  });
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [selectedPdf]);
+
+  // Close modal on ESC key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSelectedPdf(null);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   return (
     <section
       id="case-studies"
       aria-labelledby="case-studies-heading"
-      className="border-t"
+      className="border-t relative"
       style={{
         paddingTop: "var(--section-y)",
         paddingBottom: "var(--section-y)",
@@ -46,163 +139,188 @@ export function CaseStudies() {
       <Container>
         <FadeIn>
           <SectionHeading
-            eyebrow="Strategic Breakdowns"
+            eyebrow="Verified PDF Documentation"
             title="Case Studies"
-            description="Deep dives into performance strategy, execution methodology, and measurable business outcomes across global markets."
-            className="mb-8"
+            description="Explore in-depth PDF case studies detailing strategy execution, ad performance, and business growth. Click any card to preview the full PDF document inside the modal."
+            className="mb-12"
           />
         </FadeIn>
 
-        {/* Category Filter Tabs */}
-        <FadeIn>
-          <div className="flex flex-wrap items-center justify-center gap-2 mb-12">
-            {categories.map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => setActiveFilter(cat.id)}
-                className="px-4 py-2 rounded-full text-xs font-semibold transition-all duration-200 border cursor-pointer"
-                style={{
-                  background: activeFilter === cat.id ? "var(--accent)" : "var(--surface)",
-                  color: activeFilter === cat.id ? "var(--bg)" : "var(--text-muted)",
-                  borderColor: activeFilter === cat.id ? "var(--accent)" : "var(--border)",
+        {/* All Case Studies Grid */}
+        <StaggerContainer staggerChildren={0.07} className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {pdfCaseStudies.map((cs) => (
+            <StaggerItem key={cs.id}>
+              <div
+                onClick={() => setSelectedPdf(cs)}
+                className="block h-full group cursor-pointer"
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") setSelectedPdf(cs);
                 }}
+                title={`View ${cs.title} PDF Modal`}
               >
-                {cat.label}
-              </button>
-            ))}
-          </div>
-        </FadeIn>
-
-        {/* Case Studies Grid */}
-        <StaggerContainer staggerChildren={0.08} className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {filteredStudies.slice(0, 6).map((cs) => {
-            const mainMetric = cs.metrics.find((m) => m.highlight) || cs.metrics[0];
-            return (
-              <StaggerItem key={cs.slug}>
                 <HoverCard
-                  className="group flex flex-col rounded-2xl border transition-all duration-300 overflow-hidden h-full shadow-lg"
+                  className="group flex flex-col rounded-2xl border transition-all duration-300 overflow-hidden h-full shadow-lg group-hover:border-[var(--accent)]"
                   style={{
                     background: "var(--surface)",
                     borderColor: "var(--border)",
                   }}
                 >
-                  {/* Image & Main Highlight Badge */}
+                  {/* Image Container with Hover Zoom */}
                   <div className="relative aspect-[16/10] w-full overflow-hidden bg-[var(--surface-2)]">
-                    {cs.image && (
-                      <Image
-                        src={cs.image}
-                        alt={cs.niche}
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                    )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                    
-                    {/* Floating Top Badge */}
-                    <div className="absolute top-3 left-3 flex flex-wrap gap-1.5">
+                    <Image
+                      src={cs.image}
+                      alt={cs.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
+
+                    {/* Platform Tag Badge */}
+                    <div className="absolute top-3 left-3">
                       <span
-                        className="rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider border shadow-sm"
+                        className="rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider border shadow-md backdrop-blur-md"
                         style={{
                           background: "rgba(10, 10, 11, 0.85)",
                           borderColor: "var(--border)",
                           color: "var(--accent)",
                         }}
                       >
-                        {cs.platform.toUpperCase()}
-                      </span>
-                      <span
-                        className="rounded-full px-2.5 py-0.5 text-[10px] font-medium border shadow-sm"
-                        style={{
-                          background: "rgba(10, 10, 11, 0.85)",
-                          borderColor: "var(--border)",
-                          color: "var(--text-muted)",
-                        }}
-                      >
-                        {cs.market}
+                        {cs.platform}
                       </span>
                     </div>
 
-                    {/* Bottom Main Metric Highlight */}
-                    {mainMetric && (
-                      <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
-                        <div>
-                          <p className="text-[10px] uppercase font-semibold tracking-wider text-gray-300">
-                            {mainMetric.label}
-                          </p>
-                          <p className="text-xl font-extrabold text-white leading-none mt-0.5">
-                            {mainMetric.value}
-                          </p>
-                        </div>
-                        <div
-                          className="flex h-8 w-8 items-center justify-center rounded-full border bg-black/60 text-white transition-transform group-hover:scale-110 group-hover:bg-[var(--accent)] group-hover:text-[var(--bg)]"
-                          style={{ borderColor: "var(--border)" }}
-                        >
-                          <ArrowUpRight size={16} />
-                        </div>
-                      </div>
-                    )}
+                    {/* Quick Preview Badge at top right */}
+                    <div className="absolute top-3 right-3 flex h-8 w-8 items-center justify-center rounded-full border bg-black/75 text-[var(--accent)] shadow-md transition-transform group-hover:scale-110">
+                      <Eye size={16} />
+                    </div>
                   </div>
 
-                  {/* Card Content */}
-                  <div className="flex flex-1 flex-col p-6">
-                    <h3 className="mb-2 text-base font-bold leading-snug group-hover:text-[var(--accent)] transition-colors" style={{ color: "var(--text)" }}>
-                      {cs.niche}
+                  {/* Card Body */}
+                  <div className="flex flex-1 flex-col p-5">
+                    <h3 className="mb-4 text-base font-bold leading-snug group-hover:text-[var(--accent)] transition-colors duration-200" style={{ color: "var(--text)" }}>
+                      {cs.title}
                     </h3>
 
-                    <p className="text-xs leading-relaxed flex-1 mb-5 line-clamp-3" style={{ color: "var(--text-muted)" }}>
-                      {cs.summary}
-                    </p>
-
-                    {/* Metrics Grid inside card */}
-                    <div className="grid grid-cols-3 gap-2 py-3 px-3 rounded-xl border mb-5" style={{ background: "var(--surface-2)", borderColor: "var(--border)" }}>
-                      {cs.metrics.slice(0, 3).map((m, idx) => (
-                        <div key={idx} className="text-center">
-                          <p className="text-[10px] font-medium truncate" style={{ color: "var(--text-dim)" }}>
-                            {m.label}
-                          </p>
-                          <p className="text-xs font-bold mt-0.5" style={{ color: m.highlight ? "var(--accent)" : "var(--text)" }}>
-                            {m.value}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* CTA Link */}
-                    <Link
-                      href={`/case-studies/${cs.slug}`}
-                      className="inline-flex items-center justify-center gap-1.5 w-full py-2.5 rounded-xl border text-xs font-semibold transition-all hover:border-[var(--accent)] hover:bg-[var(--surface-2)]"
+                    {/* Open Modal CTA Footer */}
+                    <div
+                      className="mt-auto pt-3 border-t flex items-center justify-between text-xs font-semibold group-hover:text-[var(--accent)] transition-colors duration-200"
                       style={{
                         borderColor: "var(--border)",
-                        color: "var(--text)",
+                        color: "var(--text-muted)",
                       }}
                     >
-                      <span>Read Full Case Study</span>
-                      <ArrowUpRight size={14} style={{ color: "var(--accent)" }} />
-                    </Link>
+                      <span className="flex items-center gap-1.5">
+                        <FileText size={14} style={{ color: "var(--accent)" }} />
+                        <span>Preview PDF Case Study</span>
+                      </span>
+                      <Eye size={14} className="transition-transform duration-200 group-hover:scale-110" />
+                    </div>
                   </div>
                 </HoverCard>
-              </StaggerItem>
-            );
-          })}
+              </div>
+            </StaggerItem>
+          ))}
         </StaggerContainer>
-
-        {/* View All Case Studies Button */}
-        <FadeIn className="mt-12 text-center">
-          <Link
-            href="/case-studies"
-            className="inline-flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold border transition-all hover:scale-105"
-            style={{
-              background: "var(--surface)",
-              borderColor: "var(--border)",
-              color: "var(--accent)",
-            }}
-          >
-            <Layers size={16} />
-            <span>Explore All 21 Detailed Case Studies</span>
-          </Link>
-        </FadeIn>
       </Container>
+
+      {/* PDF Modal Viewer */}
+      <AnimatePresence>
+        {selectedPdf && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 md:p-8 bg-black/80 backdrop-blur-md"
+            onClick={() => setSelectedPdf(null)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 15 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 15 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="relative w-full max-w-5xl h-[90vh] flex flex-col rounded-2xl border shadow-2xl overflow-hidden"
+              style={{
+                background: "var(--surface)",
+                borderColor: "var(--border)",
+              }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Modal Header Bar */}
+              <div
+                className="flex items-center justify-between px-5 py-3.5 border-b shrink-0"
+                style={{
+                  borderColor: "var(--border)",
+                  background: "var(--surface-2)",
+                }}
+              >
+                <div className="flex items-center gap-3 truncate pr-4">
+                  <div
+                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border"
+                    style={{
+                      background: "var(--bg)",
+                      borderColor: "var(--border)",
+                      color: "var(--accent)",
+                    }}
+                  >
+                    <FileText size={18} />
+                  </div>
+                  <div className="truncate">
+                    <h3 className="text-sm font-bold truncate" style={{ color: "var(--text)" }}>
+                      {selectedPdf.title}
+                    </h3>
+                    <p className="text-[11px] font-medium" style={{ color: "var(--text-muted)" }}>
+                      {selectedPdf.platform} • Case Study PDF
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2 shrink-0">
+                  {/* Open in New Tab Option */}
+                  <a
+                    href={selectedPdf.pdfUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-xs font-semibold transition-all hover:border-[var(--accent)] hover:bg-[var(--bg)]"
+                    style={{
+                      borderColor: "var(--border)",
+                      background: "var(--surface)",
+                      color: "var(--text)",
+                    }}
+                  >
+                    <span>Open New Tab</span>
+                    <ExternalLink size={13} style={{ color: "var(--accent)" }} />
+                  </a>
+
+                  {/* Close Button */}
+                  <button
+                    onClick={() => setSelectedPdf(null)}
+                    aria-label="Close PDF Viewer"
+                    className="flex h-9 w-9 items-center justify-center rounded-xl border transition-all hover:bg-[var(--bg)] cursor-pointer"
+                    style={{
+                      borderColor: "var(--border)",
+                      color: "var(--text-muted)",
+                    }}
+                  >
+                    <X size={18} />
+                  </button>
+                </div>
+              </div>
+
+              {/* PDF Viewer iFrame Frame */}
+              <div className="flex-1 w-full h-full bg-zinc-950 relative">
+                <iframe
+                  src={`${selectedPdf.pdfUrl}#toolbar=1&navpanes=0`}
+                  title={selectedPdf.title}
+                  className="w-full h-full border-0"
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
