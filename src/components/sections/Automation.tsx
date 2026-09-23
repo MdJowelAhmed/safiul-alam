@@ -1,10 +1,12 @@
 "use client";
 
+import { useState, useEffect, useCallback } from "react";
 import { Container } from "@/components/shared/Container";
 import { SectionHeading } from "@/components/shared/SectionHeading";
-import { CheckCircle2, ArrowRight, Workflow, Cpu, Layers } from "lucide-react";
-import { FadeIn, StaggerContainer, StaggerItem, HoverCard } from "@/components/shared/Motion";
+import { ChevronLeft, ChevronRight, Sparkles, Play, Pause } from "lucide-react";
+import { FadeIn, HoverCard } from "@/components/shared/Motion";
 import { ImageZoom } from "@/components/case-studies/ImageZoom";
+import { motion, AnimatePresence } from "framer-motion";
 
 export interface AutomationWorkflow {
   id: string;
@@ -54,39 +56,50 @@ const workflows: AutomationWorkflow[] = [
   },
 ];
 
-const tools = [
-  {
-    name: "GoHighLevel",
-    description: "All-in-one CRM, pipeline, and automation platform for lead management and nurturing.",
-  },
-  {
-    name: "Make.com",
-    description: "No-code automation connecting Meta Ads, email tools, and CRMs in real time.",
-  },
-  {
-    name: "HubSpot CRM",
-    description: "Advanced lead management, pipeline stage tracking, and qualification systems.",
-  },
-  {
-    name: "Kit (ConvertKit)",
-    description: "Email marketing automation for nurturing lead sequences and subscriber journeys.",
-  },
-  {
-    name: "n8n & Zapier",
-    description: "Workflow automation and app integration engines for seamless business operations.",
-  },
-  {
-    name: "ManyChat",
-    description: "Messenger and Instagram DM automation for instant lead qualification and follow-up.",
-  },
-];
-
 export function Automation() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [direction, setDirection] = useState(1);
+
+  const totalItems = workflows.length;
+
+  const nextSlide = useCallback(() => {
+    setDirection(1);
+    setCurrentIndex((prev) => (prev + 1) % totalItems);
+  }, [totalItems]);
+
+  const prevSlide = useCallback(() => {
+    setDirection(-1);
+    setCurrentIndex((prev) => (prev - 1 + totalItems) % totalItems);
+  }, [totalItems]);
+
+  const goToSlide = (index: number) => {
+    setDirection(index > currentIndex ? 1 : -1);
+    setCurrentIndex(index);
+  };
+
+  // Smooth Auto-slide every 4 seconds
+  useEffect(() => {
+    if (!isAutoPlaying || isPaused) return;
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [nextSlide, isAutoPlaying, isPaused]);
+
+  // Get 3 items starting from currentIndex for desktop view
+  const visibleWorkflows = [
+    workflows[currentIndex % totalItems],
+    workflows[(currentIndex + 1) % totalItems],
+    workflows[(currentIndex + 2) % totalItems],
+  ];
+
   return (
     <section
       id="automation"
       aria-labelledby="automation-heading"
-      className="border-t"
+      className="border-t overflow-hidden"
       style={{
         paddingTop: "var(--section-y)",
         paddingBottom: "var(--section-y)",
@@ -95,72 +108,164 @@ export function Automation() {
       }}
     >
       <Container>
-        <FadeIn>
-          <SectionHeading
-            eyebrow="Automation & Workflows"
-            title="Marketing Automation & Lead Workflows"
-            // description="Getting a lead is only the beginning. I build automated workflows that nurture leads, deliver timely communications, and move contacts through the funnel without manual intervention."
-            className="mb-12"
-          />
-        </FadeIn>
+        {/* Header with Title & Navigation Controls */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-6">
+          <FadeIn>
+            <SectionHeading
+              eyebrow="Automation & Workflows"
+              title="Marketing Automation & Lead Workflows"
+              className="mb-0"
+            />
+          </FadeIn>
 
-        {/* Featured Workflows Grid */}
-        <StaggerContainer staggerChildren={0.12} className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {workflows.map((item) => (
-            <StaggerItem key={item.id}>
-              <HoverCard
-                className="group flex flex-col rounded-2xl border transition-all duration-300 overflow-hidden h-full shadow-lg"
+          {/* Carousel Controls */}
+          <FadeIn>
+            <div className="flex items-center gap-3 shrink-0">
+              {/* Counter Badge */}
+              <div
+                className="px-3 py-1 rounded-full text-xs font-semibold border flex items-center gap-1.5"
                 style={{
-                  background: "var(--bg)",
+                  background: "var(--surface-2)",
                   borderColor: "var(--border)",
+                  color: "var(--text-muted)",
                 }}
               >
-                {/* Image Zoom Proof Container */}
-                <div className="p-2 bg-[var(--surface-2)] border-b border-[var(--border)]">
-                  <ImageZoom
-                    src={item.image}
-                    alt={`${item.title} workflow diagram`}
-                    title=""
-                    zoomLevel={1.5}
-                    lensSize={220}
-                  />
+                <Sparkles size={13} style={{ color: "var(--accent)" }} />
+                <span>
+                  <strong style={{ color: "var(--accent)" }}>{String(currentIndex + 1).padStart(2, "0")}</strong> / {String(totalItems).padStart(2, "0")}
+                </span>
+              </div>
+
+              {/* Auto-play Play/Pause Button */}
+              <button
+                onClick={() => setIsAutoPlaying((prev) => !prev)}
+                aria-label={isAutoPlaying ? "Pause auto-slide" : "Start auto-slide"}
+                title={isAutoPlaying ? "Pause Auto-slide" : "Play Auto-slide"}
+                className="flex h-10 w-10 items-center justify-center rounded-xl border transition-all duration-200 hover:scale-105 active:scale-95 shadow-sm cursor-pointer"
+                style={{
+                  background: isAutoPlaying ? "var(--surface-2)" : "var(--bg)",
+                  borderColor: isAutoPlaying ? "var(--accent)" : "var(--border)",
+                  color: isAutoPlaying ? "var(--accent)" : "var(--text)",
+                }}
+              >
+                {isAutoPlaying ? <Pause size={17} /> : <Play size={17} />}
+              </button>
+
+              {/* Navigation Arrows */}
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={prevSlide}
+                  aria-label="Previous workflow"
+                  className="flex h-10 w-10 items-center justify-center rounded-xl border transition-all duration-200 hover:scale-105 active:scale-95 shadow-sm cursor-pointer"
+                  style={{
+                    background: "var(--bg)",
+                    borderColor: "var(--border)",
+                    color: "var(--text)",
+                  }}
+                >
+                  <ChevronLeft size={20} />
+                </button>
+                <button
+                  onClick={nextSlide}
+                  aria-label="Next workflow"
+                  className="flex h-10 w-10 items-center justify-center rounded-xl border transition-all duration-200 hover:scale-105 active:scale-95 shadow-sm cursor-pointer"
+                  style={{
+                    background: "var(--bg)",
+                    borderColor: "var(--border)",
+                    color: "var(--text)",
+                  }}
+                >
+                  <ChevronRight size={20} />
+                </button>
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+
+        {/* 3 Workflows Carousel Grid with Card-Hover Pause */}
+        <div
+          className="relative"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          <AnimatePresence mode="popLayout" initial={false}>
+            <motion.div
+              key={currentIndex}
+              initial={{ opacity: 0, x: direction * 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: direction * -30 }}
+              transition={{ duration: 0.35, ease: "easeInOut" }}
+              className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+            >
+              {visibleWorkflows.map((item, idx) => (
+                <div key={`${item.id}-${idx}`} className="h-full">
+                  <HoverCard
+                    className="group flex flex-col rounded-2xl border transition-all duration-300 overflow-hidden h-full shadow-lg"
+                    style={{
+                      background: "var(--bg)",
+                      borderColor: "var(--border)",
+                    }}
+                  >
+                    {/* Image Zoom Proof Container */}
+                    <div className="p-2 bg-[var(--surface-2)] border-b border-[var(--border)]">
+                      <ImageZoom
+                        src={item.image}
+                        alt={`${item.title} workflow diagram`}
+                        title=""
+                        zoomLevel={1.5}
+                        lensSize={220}
+                      />
+                    </div>
+
+                    {/* Card Content */}
+                    <div className="flex flex-1 flex-col p-6">
+                      {/* Tag Badges */}
+                      <div className="flex flex-wrap gap-1.5 mb-3.5">
+                        {item.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="rounded-full px-2.5 py-0.5 text-[10px] font-semibold"
+                            style={{
+                              background: "var(--surface-2)",
+                              color: "var(--accent)",
+                              border: "1px solid var(--border)",
+                            }}
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+
+                      <h3 className="mb-2.5 text-lg font-bold leading-snug" style={{ color: "var(--text)" }}>
+                        {item.title}
+                      </h3>
+
+                      <p className="text-xs leading-relaxed flex-1 mb-5" style={{ color: "var(--text-muted)" }}>
+                        {item.description}
+                      </p>
+                    </div>
+                  </HoverCard>
                 </div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
+        </div>
 
-                {/* Card Content */}
-                <div className="flex flex-1 flex-col p-6">
-                  {/* Tag Badges */}
-                  <div className="flex flex-wrap gap-1.5 mb-3.5">
-                    {item.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-full px-2.5 py-0.5 text-[10px] font-semibold"
-                        style={{
-                          background: "var(--surface-2)",
-                          color: "var(--accent)",
-                          border: "1px solid var(--border)",
-                        }}
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  <h3 className="mb-2.5 text-lg font-bold leading-snug" style={{ color: "var(--text)" }}>
-                    {item.title}
-                  </h3>
-
-                  <p className="text-xs leading-relaxed flex-1 mb-5" style={{ color: "var(--text-muted)" }}>
-                    {item.description}
-                  </p>
-
-               
-                </div>
-              </HoverCard>
-            </StaggerItem>
+        {/* Carousel Pagination Dots */}
+        <div className="flex items-center justify-center gap-2 mt-8">
+          {workflows.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index)}
+              aria-label={`Go to slide ${index + 1}`}
+              className="h-2.5 rounded-full transition-all duration-300 cursor-pointer"
+              style={{
+                width: currentIndex === index ? "28px" : "10px",
+                background: currentIndex === index ? "var(--accent)" : "var(--border)",
+              }}
+            />
           ))}
-        </StaggerContainer>
-
-     
+        </div>
       </Container>
     </section>
   );
