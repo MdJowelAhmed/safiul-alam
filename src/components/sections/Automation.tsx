@@ -144,69 +144,14 @@ export function Automation() {
                     {item.description}
                   </p>
 
-                  {/* Workflow Steps Pill Flow */}
-                  <div className="pt-4 border-t border-[var(--border)] mb-4">
-                    <p className="text-[11px] font-semibold uppercase tracking-wider mb-2.5 flex items-center gap-1.5" style={{ color: "var(--text-dim)" }}>
-                      <Workflow size={13} style={{ color: "var(--accent)" }} />
-                      <span>Workflow Flow</span>
-                    </p>
-                    <div className="flex flex-wrap items-center gap-1.5">
-                      {item.steps.map((step, idx) => (
-                        <div key={step} className="flex items-center gap-1 text-[11px]">
-                          <span
-                            className="rounded-md px-2 py-0.5 font-medium"
-                            style={{
-                              background: "var(--surface-2)",
-                              color: "var(--text)",
-                              border: "1px solid var(--border)",
-                            }}
-                          >
-                            {step}
-                          </span>
-                          {idx < item.steps.length - 1 && (
-                            <ArrowRight size={10} style={{ color: "var(--text-dim)" }} aria-hidden="true" />
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="pt-3 border-t flex items-center gap-1.5 text-[11px] font-medium" style={{ borderColor: "var(--border)", color: "var(--accent)" }}>
-                    <CheckCircle2 size={13} />
-                    <span>Verified Automation System</span>
-                  </div>
+               
                 </div>
               </HoverCard>
             </StaggerItem>
           ))}
         </StaggerContainer>
 
-        {/* Automation Stack & Tools Grid */}
-        <div className="mt-16">
-          <div className="mb-6 flex items-center gap-2">
-            <Cpu size={18} style={{ color: "var(--accent)" }} />
-            <h3 className="text-base font-semibold" style={{ color: "var(--text)" }}>
-              Automation & CRM Platforms
-            </h3>
-          </div>
-          <StaggerContainer staggerChildren={0.06} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {tools.map((tool) => (
-              <StaggerItem key={tool.name}>
-                <HoverCard
-                  className="rounded-xl border p-5 h-full"
-                  style={{ background: "var(--surface)", borderColor: "var(--border)" }}
-                >
-                  <h4 className="mb-1.5 text-sm font-semibold" style={{ color: "var(--text)" }}>
-                    {tool.name}
-                  </h4>
-                  <p className="text-xs leading-relaxed" style={{ color: "var(--text-muted)" }}>
-                    {tool.description}
-                  </p>
-                </HoverCard>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-        </div>
+     
       </Container>
     </section>
   );

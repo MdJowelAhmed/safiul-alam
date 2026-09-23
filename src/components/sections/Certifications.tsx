@@ -41,7 +41,7 @@ export function Certifications() {
             </span>
           </div>
 
-          <StaggerContainer staggerChildren={0.04} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <StaggerContainer staggerChildren={0.04} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {certs.map((cert) => (
               <StaggerItem key={cert.id}>
                 {cert.link ? (
@@ -104,7 +104,7 @@ export function Certifications() {
                       </div>
 
                       {/* Bottom Footer: Verification Badge */}
-                      <div className="mt-4 pt-3 border-t flex items-center justify-between text-[11px]" style={{ borderColor: "var(--border)" }}>
+                      {/* <div className="mt-4 pt-3 border-t flex items-center justify-between text-[11px]" style={{ borderColor: "var(--border)" }}>
                         <span className="flex items-center gap-1 font-medium" style={{ color: "var(--accent)" }}>
                           <CheckCircle2 size={12} />
                           Verified Credential
@@ -112,7 +112,7 @@ export function Certifications() {
                         <span className="text-[10px] uppercase font-semibold tracking-wider" style={{ color: "var(--text-dim)" }}>
                           Verify Certificate ↗
                         </span>
-                      </div>
+                      </div> */}
                     </HoverCard>
                   </a>
                 ) : (
