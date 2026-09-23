@@ -5,26 +5,64 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Container } from "@/components/shared/Container";
-import { siteConfig } from "@/data/site";
 
 const navLinks = [
-  { href: "#about", label: "About" },
+  { href: "#home", label: "Home" },
+  { href: "#about", label: "About Me" },
   { href: "#expertise", label: "Expertise" },
   { href: "#case-studies", label: "Case Studies" },
   { href: "#experience", label: "Experience" },
   { href: "#certifications", label: "Certifications" },
-  { href: "#faq", label: "FAQ" },
   { href: "#contact", label: "Contact" },
 ];
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("#home");
 
+  // Scroll background effect
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Update active section & URL hash dynamically on scroll
+  useEffect(() => {
+    const sectionIds = ["home", "about", "expertise", "case-studies", "experience", "certifications", "contact"];
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+
+    if (sections.length === 0) return;
+
+    const observerOptions = {
+      root: null,
+      rootMargin: "-25% 0px -45% 0px",
+      threshold: 0,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          const newHash = `#${id}`;
+          setActiveSection(newHash);
+          if (window.location.hash !== newHash) {
+            window.history.replaceState(
+              null,
+              "",
+              newHash === "#home" ? window.location.pathname : newHash
+            );
+          }
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
   }, []);
 
   // Lock body scroll when mobile menu is open
@@ -38,9 +76,7 @@ export function Header() {
       <header
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
         style={{
-          background: scrolled
-            ? "rgba(10,10,11,0.95)"
-            : "transparent",
+          background: scrolled ? "rgba(10,10,11,0.95)" : "transparent",
           backdropFilter: scrolled ? "blur(12px)" : "none",
           borderBottom: scrolled ? "1px solid var(--border)" : "1px solid transparent",
           padding: scrolled ? "0.75rem 0" : "1.25rem 0",
@@ -55,7 +91,7 @@ export function Header() {
             aria-label="Mohammad Safiul Alam — Home"
           >
             <span
-              className="text-sm font-bold tracking-tight transition-colors"
+              className="text-sm font-bold tracking-tight transition-colors group-hover:text-[var(--accent)]"
               style={{ color: "var(--text)" }}
             >
               Safiul Alam
@@ -73,18 +109,28 @@ export function Header() {
             className="hidden lg:flex items-center gap-1"
             aria-label="Main navigation"
           >
-            {navLinks.map(({ href, label }) => (
-              <Link
-                key={href}
-                href={href}
-                className="px-3 py-1.5 rounded-md text-sm transition-colors duration-150"
-                style={{ color: "var(--text-muted)" }}
-                onMouseEnter={(e) => { e.currentTarget.style.color = "var(--text)"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.color = "var(--text-muted)"; }}
-              >
-                {label}
-              </Link>
-            ))}
+            {navLinks.map(({ href, label }) => {
+              const isActive = activeSection === href;
+              return (
+                <Link
+                  key={href}
+                  href={href}
+                  className="px-3 py-1.5 rounded-md text-sm transition-all duration-200 font-medium"
+                  style={{
+                    color: isActive ? "var(--accent)" : "var(--text-muted)",
+                    background: isActive ? "var(--surface-2)" : "transparent",
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!isActive) e.currentTarget.style.color = "var(--text)";
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!isActive) e.currentTarget.style.color = "var(--text-muted)";
+                  }}
+                >
+                  {label}
+                </Link>
+              );
+            })}
           </nav>
 
           {/* Desktop CTA */}
@@ -105,7 +151,7 @@ export function Header() {
           {/* Mobile menu toggle */}
           <button
             id="mobile-menu-toggle"
-            className="lg:hidden flex items-center justify-center w-9 h-9 rounded-lg border transition-colors"
+            className="lg:hidden flex items-center justify-center w-9 h-9 rounded-lg border transition-colors cursor-pointer"
             style={{
               borderColor: "var(--border)",
               color: "var(--text-muted)",
@@ -137,26 +183,29 @@ export function Header() {
           >
             <Container className="flex flex-col gap-1 py-6">
               <nav aria-label="Mobile navigation">
-                {navLinks.map(({ href, label }, i) => (
-                  <motion.div
-                    key={href}
-                    initial={{ opacity: 0, x: -12 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.04 }}
-                  >
-                    <Link
-                      href={href}
-                      className="block py-3 text-lg font-medium border-b transition-colors"
-                      style={{
-                        color: "var(--text)",
-                        borderColor: "var(--border-subtle)",
-                      }}
-                      onClick={() => setMobileOpen(false)}
+                {navLinks.map(({ href, label }, i) => {
+                  const isActive = activeSection === href;
+                  return (
+                    <motion.div
+                      key={href}
+                      initial={{ opacity: 0, x: -12 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.04 }}
                     >
-                      {label}
-                    </Link>
-                  </motion.div>
-                ))}
+                      <Link
+                        href={href}
+                        className="block py-3 text-lg font-medium border-b transition-colors"
+                        style={{
+                          color: isActive ? "var(--accent)" : "var(--text)",
+                          borderColor: "var(--border-subtle)",
+                        }}
+                        onClick={() => setMobileOpen(false)}
+                      >
+                        {label}
+                      </Link>
+                    </motion.div>
+                  );
+                })}
               </nav>
               <div className="mt-6">
                 <Link

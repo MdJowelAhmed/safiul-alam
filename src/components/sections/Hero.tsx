@@ -13,7 +13,7 @@ const platforms = ["Meta Ads", "Google Ads", "TikTok Ads", "LinkedIn Ads", "Conv
 export function Hero() {
   return (
     <section
-      id="hero"
+      id="home"
       aria-label="Introduction"
       className="relative flex min-h-screen flex-col items-start justify-center overflow-hidden pt-28 pb-20"
     >
