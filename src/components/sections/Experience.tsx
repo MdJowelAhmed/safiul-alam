@@ -88,7 +88,7 @@ export function Experience() {
                         </span>
                       </div>
                     </div>
-                    <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
+                    <p className="text-sm leading-relaxed whitespace-pre-line" style={{ color: "var(--text-muted)" }}>
                       {job.description}
                     </p>
                   </HoverCard>

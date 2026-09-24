@@ -2,12 +2,12 @@ import type { WorkExperience } from "@/types";
 
 export const workExperience: WorkExperience[] = [
   {
-    id: "scaleup-ads",
+    id: "scaleup-it-limited",
     title: "Social Media Marketing Executive",
-    company: "ScaleUp Ads Agency",
+    company: "ScaleUp It Limited",
     period: "September 2025 – Present",
     description:
-      "Managing and executing paid social media marketing campaigns across Meta and other platforms for agency clients. Responsible for campaign strategy, media buying, audience targeting, and performance reporting.",
+      "I manage end-to-end digital marketing and paid acquisition campaigns for clients across diverse industries and business models. I turn business objectives, market research, audience insights, and customer behavior into structured marketing strategies designed to improve customer acquisition and measurable business outcomes.\n\nMy work covers the full performance marketing cycle, from market research, strategic planning, and campaign execution to conversion tracking, funnel optimization, testing, performance analysis, and marketing automation. I continuously use data and campaign insights to improve acquisition efficiency, optimize conversion performance, and support measurable business growth.",
     current: true,
   },
   {
@@ -16,7 +16,7 @@ export const workExperience: WorkExperience[] = [
     company: "Independent Client Projects",
     period: "2024 – Present",
     description:
-      "Working with businesses across the UK, USA, UAE, Netherlands, Canada and Australia to plan and execute paid advertising campaigns on Meta, Google, and TikTok. Managed $1M+ in advertising spend across 300+ projects.",
+      "I work with businesses on performance marketing and paid acquisition projects focused on generating leads, acquiring customers, and driving sales. I independently handle campaign strategy, execution, conversion tracking, performance testing, and optimization, using data and campaign insights to improve marketing efficiency and achieve measurable business outcomes.",
     current: true,
   },
   {
@@ -25,7 +25,8 @@ export const workExperience: WorkExperience[] = [
     company: "Chatgar Sangbad",
     period: "October 2024 – March 2025",
     description:
-      "Led digital marketing initiatives including social media strategy, paid advertising, content planning, and audience growth for a digital media organisation.",
+      "I managed the company’s SEO and social media presence, focusing on improving organic search visibility and expanding content reach. I worked on SEO implementation, content optimization, social media management, performance monitoring, and audience engagement to support the publication’s digital reach and audience growth.",
     current: false,
   },
 ];
+
