@@ -20,7 +20,7 @@ const frameworkSteps = [
 const tools = [
   "Meta Ads", "Google Ads", "TikTok Ads", "LinkedIn Ads",
   "GTM", "GA4", "Conversion Tracking", "GoHighLevel",
-  "Make.com", "Kit", "AI",
+  "Make.com", "Kit", "AI", "n8n"
 ];
 
 export function About() {

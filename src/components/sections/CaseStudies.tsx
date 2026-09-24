@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { FileText, ExternalLink, X, Eye } from "lucide-react";
+import { FileText, X, Eye, ShieldCheck, Lock } from "lucide-react";
 import { Container } from "@/components/shared/Container";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { FadeIn, StaggerContainer, StaggerItem, HoverCard } from "@/components/shared/Motion";
@@ -126,20 +126,43 @@ export function CaseStudies() {
     };
   }, [selectedPdf]);
 
-  // Close modal on ESC key
+  // Prevent right-click and save/print shortcuts when PDF modal is active
   useEffect(() => {
+    if (!selectedPdf) return;
+
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setSelectedPdf(null);
+      if (e.key === "Escape") {
+        setSelectedPdf(null);
+      }
+
+      // Block Ctrl+S / Cmd+S (Save), Ctrl+P / Cmd+P (Print), Ctrl+U / Cmd+U (Source)
+      if (
+        (e.ctrlKey || e.metaKey) &&
+        ["s", "p", "u"].includes(e.key.toLowerCase())
+      ) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
     };
+
+    const handleContextMenu = (e: MouseEvent) => {
+      e.preventDefault();
+    };
+
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+    window.addEventListener("contextmenu", handleContextMenu);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("contextmenu", handleContextMenu);
+    };
+  }, [selectedPdf]);
 
   return (
     <section
       id="case-studies"
       aria-labelledby="case-studies-heading"
-      className="border-t relative"
+      className="border-t relative select-none"
       style={{
         paddingTop: "var(--section-y)",
         paddingBottom: "var(--section-y)",
@@ -147,12 +170,23 @@ export function CaseStudies() {
         background: "var(--bg)",
       }}
     >
+      {/* Hide content on print attempt */}
+      {selectedPdf && (
+        <style>{`
+          @media print {
+            body {
+              display: none !important;
+            }
+          }
+        `}</style>
+      )}
+
       <Container>
         <FadeIn>
           <SectionHeading
-            eyebrow="Verified Campaign Documentation"
+            eyebrow="SELECTED WORK"
             title="Case Studies"
-            description="Explore detailed PDF case studies featuring actual campaign titles, strategy execution, and verified growth results. Click any card to preview the full PDF report inside the modal."
+            description="Real campaigns, strategic decisions, and measurable outcomes. Explore how I approach marketing challenges through research, execution, optimization, and data."
             className="mb-12"
           />
         </FadeIn>
@@ -243,15 +277,16 @@ export function CaseStudies() {
         </StaggerContainer>
       </Container>
 
-      {/* PDF Modal Viewer */}
+      {/* Secure PDF Modal Viewer */}
       <AnimatePresence>
         {selectedPdf && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 md:p-8 bg-black/80 backdrop-blur-md"
+            className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 md:p-8 bg-black/85 backdrop-blur-md"
             onClick={() => setSelectedPdf(null)}
+            onContextMenu={(e) => e.preventDefault()}
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 15 }}
@@ -267,7 +302,7 @@ export function CaseStudies() {
             >
               {/* Modal Header Bar */}
               <div
-                className="flex items-center justify-between px-5 py-3.5 border-b shrink-0"
+                className="flex items-center justify-between px-5 py-3.5 border-b shrink-0 select-none"
                 style={{
                   borderColor: "var(--border)",
                   background: "var(--surface-2)",
@@ -294,22 +329,19 @@ export function CaseStudies() {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2 shrink-0">
-                  {/* Open in New Tab Option */}
-                  <a
-                    href={selectedPdf.pdfUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-xs font-semibold transition-all hover:border-[var(--accent)] hover:bg-[var(--bg)]"
+                <div className="flex items-center gap-2.5 shrink-0">
+                  {/* Security Protected Badge */}
+                  <div
+                    className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-xs font-semibold"
                     style={{
-                      borderColor: "var(--border)",
-                      background: "var(--surface)",
-                      color: "var(--text)",
+                      borderColor: "rgba(16, 185, 129, 0.3)",
+                      background: "rgba(16, 185, 129, 0.1)",
+                      color: "#10b981",
                     }}
                   >
-                    <span>Open New Tab</span>
-                    <ExternalLink size={13} style={{ color: "var(--accent)" }} />
-                  </a>
+                    <ShieldCheck size={14} />
+                    <span>Protected View (Download Disabled)</span>
+                  </div>
 
                   {/* Close Button */}
                   <button
@@ -326,12 +358,35 @@ export function CaseStudies() {
                 </div>
               </div>
 
-              {/* PDF Viewer iFrame Frame */}
-              <div className="flex-1 w-full h-full bg-zinc-950 relative">
+              {/* PDF Viewer iFrame Frame with Security Watermark */}
+              <div
+                className="flex-1 w-full h-full bg-zinc-950 relative overflow-hidden select-none"
+                onContextMenu={(e) => e.preventDefault()}
+              >
+                {/* Security Watermark Overlay */}
+                <div className="absolute inset-0 pointer-events-none z-10 flex flex-col justify-between p-8 opacity-[0.06] overflow-hidden select-none">
+                  <div className="flex justify-between font-mono text-xs uppercase tracking-widest text-white -rotate-12 transform scale-125">
+                    <span>SAFIUL ALAM • CONFIDENTIAL</span>
+                    <span>PROTECTED CASE STUDY</span>
+                    <span>DO NOT COPY</span>
+                  </div>
+                  <div className="flex justify-between font-mono text-xs uppercase tracking-widest text-white -rotate-12 transform scale-125">
+                    <span>FOR PREVIEW ONLY</span>
+                    <span>SAFIUL ALAM PORTFOLIO</span>
+                    <span>RESTRICTED VIEW</span>
+                  </div>
+                  <div className="flex justify-between font-mono text-xs uppercase tracking-widest text-white -rotate-12 transform scale-125">
+                    <span>CONFIDENTIAL DOCUMENT</span>
+                    <span>DO NOT DISTRIBUTE</span>
+                    <span>SAFIUL ALAM</span>
+                  </div>
+                </div>
+
+                {/* PDF Viewer iFrame with toolbar disabled */}
                 <iframe
-                  src={`${selectedPdf.pdfUrl}#toolbar=1&navpanes=0`}
+                  src={`${selectedPdf.pdfUrl}#toolbar=0&navpanes=0&scrollbar=1`}
                   title={selectedPdf.title}
-                  className="w-full h-full border-0"
+                  className="w-full h-full border-0 select-none"
                 />
               </div>
             </motion.div>
@@ -341,3 +396,4 @@ export function CaseStudies() {
     </section>
   );
 }
+
