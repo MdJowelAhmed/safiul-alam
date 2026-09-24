@@ -213,7 +213,7 @@ export function Hero() {
                 </div>
 
                 {/* Floating Bottom Badge */}
-                <motion.div
+                {/* <motion.div
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6, duration: 0.4 }}
@@ -243,10 +243,10 @@ export function Hero() {
                     className="h-2 w-2 rounded-full animate-ping"
                     style={{ background: "var(--accent)" }}
                   />
-                </motion.div>
+                </motion.div> */}
 
                 {/* Floating Top Badge */}
-                <motion.div
+                {/* <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.8, duration: 0.4 }}
@@ -259,7 +259,7 @@ export function Hero() {
                 >
                   <Award size={12} style={{ color: "var(--accent)" }} />
                   <span>Meta & Google Certified</span>
-                </motion.div>
+                </motion.div> */}
               </motion.div>
 
               {/* Social Media Links under Profile Image */}
